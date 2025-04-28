@@ -4,19 +4,19 @@ public class eduRigidBody : MonoBehaviour
 {
     // Position // Fetch position and rotation from Transform
     // Rotation // Fetch position and rotation from Transform
-    Vector2 velocity;
-    Vector2 angularVelocity;
+    
+    [SerializeField] Vector2 velocity = Vector2.zero;
+    [SerializeField] float angularVelocity = 0;
+    [SerializeField] float maxAngularVelocity = 0;
 
     [SerializeField] public float mass = 1f;
-    float momentOfInertia;
+    [SerializeField] float momentOfInertia = 0;
+    [SerializeField] float maxMomentOfInertia = 0;
 
-    // force // Accumulator for applied forces
-    // torque // Accumulator for applied torques
+    public Vector2 Forces = Vector2.zero; // Accumulator for applied forces
+    public float Torques = 0; // Accumulator for applied torques
 
-    public Vector2 Forces; // Accumulator for applied forces
-    public float Torques; // Accumulator for applied torques
-
-    [SerializeField] float coefficientOfRestitution = 1f;
+    [SerializeField] float restitution = 0.8f;
     [SerializeField] int skipFrames = 0; // is this really supposed to be in eduRigidBody?
 
     void FixedUpdate()
