@@ -24,12 +24,22 @@ public class eduRigidBody : MonoBehaviour
 
     }
 
-    void applyForce(Vector2 force)
+    public void applyForce(Vector2 force)
     {
         Forces += force;
     }
 
-    void applyTorque(float torque)
+    /// <summary> Use a float if you don't want to change or give a Vector2 direction </summary>
+    public void applyForce(float magnitude)
+    {
+        Forces += Forces.normalized * magnitude;
+    }
+
+    /// <summary>
+    /// All this does is: Torques += torque
+    /// </summary>
+    /// <param name="torque"></param>
+    public void applyTorque(float torque)
     {
         Torques += torque;
     }

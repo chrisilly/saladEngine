@@ -1,12 +1,14 @@
 using UnityEngine;
-using System.Collections.Generic;
+using System;
 
 public class eduForces : MonoBehaviour
 {
     eduRigidBody[] rigidBodies;
 
     public float gravity = -9.81f; 
-    public bool applyGravity = true; 
+    public bool applyGravity = true;
+    /// <summary> Defaults to down; (0, -1) </summary>
+    [SerializeField] Vector2 gravityDirection = Vector2.down;
     
     public float linearDragCoefficient = 0f;
     public bool applyLinearDrag = false; 
@@ -34,10 +36,13 @@ public class eduForces : MonoBehaviour
 
     void FixedUpdate()
     {
-        foreach (eduRigidBody rb in rigidBodies)
+        foreach (eduRigidBody rigidBody in rigidBodies)
         {
-            rb.Forces.y += gravity * rb.mass * (applied = applyGravity ? 1:0);   // Apply gravity to each rigid body, activate and deactivate with a bool. Alternatively use Convert.ToInt32(applyGravity)
-            rb.Torques += torque * (applied = applyTorque ? 1:0);               // Apply torque to each rigid body
+            float gravityMagnitude = Math.Abs(gravity * rigidBody.mass * (applied = applyGravity ? 1:0));
+            Vector2 gravityForce = gravityDirection * gravityMagnitude;
+
+            rigidBody.applyForce(gravityForce);                                 // Apply gravity to each rigid body, activate and deactivate with a bool. Alternatively use Convert.ToInt32(applyGravity)
+            rigidBody.applyTorque(torque * (applied = applyTorque ? 1:0));      // Apply torque to each rigid body
         }
     }
     // Update is called once per frame
