@@ -1,8 +1,9 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class eduForces : MonoBehaviour
 {
-    List<eduRigidBody> rigidBodies = new List<eduRigidBody>();
+    eduRigidBody[] rigidBodies;
 
     public float gravity = -9.81f; 
     public bool applyGravity = true; 
@@ -23,17 +24,19 @@ public class eduForces : MonoBehaviour
     public float waterLevel = 0f; //How high the water is
     public bool applyBuoyancy = false;
 
+    int applied;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        rigidBodies = new List<eduRigidBody>(FindObjectsOfType<eduRigidBody>());
+        rigidBodies = FindObjectsByType<eduRigidBody>(FindObjectsSortMode.None); //FindObjectsByType<eduRigidBody>(FindObjectsSortMode.None);
     }
 
     void FixedUpdate()
     {
         foreach (eduRigidBody rb in rigidBodies)
         {
-            rb.Forces.Y += gravity * rb.Mass * (int applied = applyGravity ? 1:0);   // Apply gravity to each rigid body, activate and deactivate with a bool. Alternatively use Convert.ToInt32(applyGravity)
+            rb.Forces.y += gravity * rb.mass * (applied = applyGravity ? 1:0);   // Apply gravity to each rigid body, activate and deactivate with a bool. Alternatively use Convert.ToInt32(applyGravity)
             rb.Torques += torque * (applied = applyTorque ? 1:0);               // Apply torque to each rigid body
         }
     }

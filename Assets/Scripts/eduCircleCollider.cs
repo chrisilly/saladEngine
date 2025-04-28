@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class eduCircleCollider : MonoBehaviour
 {
@@ -8,12 +9,17 @@ public class eduCircleCollider : MonoBehaviour
     public float mass;
     public float momentOfInertia;
 
+    public eduRigidBody rigidBody;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        radius = GetComponentInParent<transform>.scale;
-        mass = density * Mathf.PI * radius^2;
-        momentOfInertia = (mass * radius^4) / 4.0f;
+        rigidBody = GetComponentInParent<eduRigidBody>();
+        radius = transform.lossyScale.x;
+        mass = density * Mathf.PI * radius * radius;
+        momentOfInertia = (mass * radius * radius * radius * radius) / 4.0f;
+
+        rigidBody.mass = mass;
     }
 
     // Update is called once per frame
