@@ -4,7 +4,7 @@ public class eduRigidBody : MonoBehaviour
 {
     // Position // Fetch position and rotation from Transform
     // Rotation // Fetch position and rotation from Transform
-    
+
     [SerializeField] Vector2 velocity = Vector2.zero;
     [SerializeField] float angularVelocity = 0;
     [SerializeField] float maxAngularVelocity = 0;
@@ -26,14 +26,18 @@ public class eduRigidBody : MonoBehaviour
 
     void applyForce(Vector2 force)
     {
-
+        Forces += force;
     }
 
     void applyTorque(float torque)
     {
-
+        Torques += torque;
     }
 
+    /// <summary>
+    /// We don't use this because it's listed as an optional method in the assignment doc
+    /// </summary>
+    /// <param name="impulse"></param>
     void applyImpulse(Vector2 impulse)
     {
 
