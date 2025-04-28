@@ -2,9 +2,6 @@ using UnityEngine;
 
 public class eduRigidBody : MonoBehaviour 
 {
-    // Position // Fetch position and rotation from Transform
-    // Rotation // Fetch position and rotation from Transform
-
     [SerializeField] Vector2 velocity = Vector2.zero;
     [SerializeField] float angularVelocity = 0;
     [SerializeField] float maxAngularVelocity = 0;
@@ -21,7 +18,15 @@ public class eduRigidBody : MonoBehaviour
 
     void FixedUpdate()
     {
+        float variableTimeStep = (skipFrames + 1) * Time.fixedDeltaTime;
 
+        // Semi-implicit Euler method, see README.md
+        velocity = velocity + variableTimeStep * Forces/mass;
+        // We make a Vector3 out of velocity here as a quick fix because transform.position is a Vector3 by default even in a 2D project for whatever reason
+        transform.position = transform.position + variableTimeStep * new Vector3(velocity.x, velocity.y, 1);
+
+        Forces = Vector2.zero;
+        Torques = 0;
     }
 
     public void applyForce(Vector2 force)

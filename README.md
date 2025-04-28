@@ -9,3 +9,15 @@
     3. In the drop-down menu, click `add project from disk`
     4. Navigate to and select the cloned git repository
 4. Launch the project via Unity Hub
+
+# About the Project
+
+We use our own rigidbodies utilising the semi-implicit Euler method to calculate and update their positions.
+
+$$
+v_2 = v_1 + h\frac{F_1}{m}
+$$
+
+$$
+x_2 = x_1 + hv_2
+$$

@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 115952046}
   - component: {fileID: 115952045}
   - component: {fileID: 115952044}
+  - component: {fileID: 115952047}
   m_Layer: 0
   m_Name: MrSalad
   m_TagString: Untagged
@@ -149,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e392604007de0745872a826b382b6bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: {x: 0, y: 0}
+  velocity: {x: 10, y: 10}
   angularVelocity: 0
   maxAngularVelocity: 0
   mass: 1
@@ -223,12 +224,29 @@ Transform:
   m_GameObject: {fileID: 115952043}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0023660958, y: -0.47836328, z: 0}
+  m_LocalPosition: {x: -9.03, y: -2.27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &115952047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115952043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61b529009d0240e4cb0c6c093b91bcab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 1
+  density: 250
+  mass: 0
+  momentOfInertia: 0
+  rigidBody: {fileID: 0}
 --- !u!1 &484791428
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,6 +326,64 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1505339311
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1505339313}
+  - component: {fileID: 1505339312}
+  m_Layer: 0
+  m_Name: PhysicsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1505339312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1505339311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 835f37bdebf5a0a439b47be738904fde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravity: -9.81
+  applyGravity: 1
+  gravityDirection: {x: 0, y: -1}
+  linearDragCoefficient: 0
+  applyLinearDrag: 0
+  torque: 0
+  applyTorque: 0
+  angularDragCoefficient: 0
+  applyAngularDrag: 0
+  windForce: 0
+  applyWind: 0
+  fluidDensity: 0
+  waterLevel: 0
+  applyBuoyancy: 0
+--- !u!4 &1505339313
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1505339311}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.16622168, y: -0.51643085, z: 0.048042722}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -412,3 +488,4 @@ SceneRoots:
   - {fileID: 1880556381}
   - {fileID: 484791430}
   - {fileID: 115952046}
+  - {fileID: 1505339313}
