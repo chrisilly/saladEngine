@@ -10,6 +10,8 @@
     4. Navigate to and select the cloned git repository
 4. Launch the project via Unity Hub
 
+**NOTE!** If you're using Visual Studio as your IDE, make sure that the Unity package `Visual Studio Editor` is installed to get working intellisense and project file generation. After opening the project via Unity Hub, navigate to `Window`>`Package Manager` using the menu bar before searching for and installing the `Visual Studio Editor` package.
+
 # About the Project
 
 We use our own rigidbodies utilising the semi-implicit Euler method to calculate and update their positions.
