@@ -25,6 +25,14 @@ public class eduRigidBody : MonoBehaviour
         // We make a Vector3 out of velocity here as a quick fix because transform.position is a Vector3 by default even in a 2D project for whatever reason
         transform.position = transform.position + variableTimeStep * new Vector3(velocity.x, velocity.y, 1);
 
+        //Semi-implicit Euler method, but applied to angular motion.
+        //angularVelocity = angularVelocity + variableTimeStep * Torques * (1/momentOfInertia);
+        ////Form a quaternion and use angular velocity to rotate. Could reduce this to a rotation value that is creeated in the rotate function.
+        //Vector3 rotation = new Vector3 (0f, 0f, variableTimeStep * angularVelocity);
+        ////NOTE: Works "as intended" in that it adds torques and all that jazz correctly, however it drops straight to -infinity.
+        ////NOTE: transform.Rotate works based on EULER angles. Angular velocity and such work off of RADIANS. Conversion is necessary.
+        //transform.Rotate(rotation);
+
         Forces = Vector2.zero;
         Torques = 0;
     }
@@ -39,6 +47,11 @@ public class eduRigidBody : MonoBehaviour
     {
         Forces += Forces.normalized * magnitude;
     }
+
+    /// <summary>
+    /// Just returns velocity. Making a summary for consistency's sake.
+    /// </summary>
+    public Vector2 GetVelocity() { return velocity; }
 
     /// <summary>
     /// All this does is: Torques += torque
@@ -57,4 +70,6 @@ public class eduRigidBody : MonoBehaviour
     {
 
     }
+
+    
 }
