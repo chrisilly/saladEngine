@@ -77,7 +77,7 @@ StyleCopReport.xml
 *_p.c
 *_h.h
 *.ilk
-*.meta
+# *.meta # we track these so that scripts stay attached to the correct objects, among other things. (Unity does not support git: https://docs.unity3d.com/Manual/Versioncontrolintegration.html)
 *.obj
 *.iobj
 *.pch
