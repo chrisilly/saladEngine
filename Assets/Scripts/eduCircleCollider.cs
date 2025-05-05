@@ -15,11 +15,13 @@ public class eduCircleCollider : MonoBehaviour
     void Start()
     {
         rigidBody = GetComponentInParent<eduRigidBody>();
-        radius = transform.lossyScale.x;
+        radius = transform.lossyScale.x/2;
         mass = density * Mathf.PI * radius * radius;
-        momentOfInertia = (mass * radius * radius * radius * radius) / 4.0f;
+        //momentOfInertia = (Mathf.PI * radius * radius * radius * radius) / 4.0f;
+        momentOfInertia = 0.5f * mass * Mathf.Pow(radius, 2);
 
         rigidBody.mass = mass;
+        rigidBody.momentOfInertia = momentOfInertia;
     }
 
     // Update is called once per frame

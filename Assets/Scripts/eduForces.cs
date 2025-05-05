@@ -41,8 +41,10 @@ public class eduForces : MonoBehaviour
             float gravityMagnitude = Math.Abs(gravity * rigidBody.mass * (applied = applyGravity ? 1:0));
             Vector2 gravityForce = gravityDirection * gravityMagnitude;
 
-            rigidBody.applyForce(gravityForce);                                 // Apply gravity to each rigid body, activate and deactivate with a bool. Alternatively use Convert.ToInt32(applyGravity)
-            rigidBody.applyTorque(torque * (applied = applyTorque ? 1:0));      // Apply torque to each rigid body
+            float Torques = torque * (applied = applyTorque ? 1 : 0);
+
+            rigidBody.applyForce(gravityForce); // Apply gravity to each rigid body, activate and deactivate with a bool. Alternatively use Convert.ToInt32(applyGravity)
+            rigidBody.applyTorque(Torques);     // Apply torque to each rigid body
         }
     }
     // Update is called once per frame
