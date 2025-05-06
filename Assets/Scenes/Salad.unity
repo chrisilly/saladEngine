@@ -171,6 +171,8 @@ MonoBehaviour:
   velocity: {x: 0, y: 0}
   angularVelocity: 8
   maxAngularVelocity: 8
+  gravityMultiplier: 1
+  gravityDirection: {x: 0, y: -1}
   mass: 1
   momentOfInertia: 0
   maxMomentOfInertia: 0
@@ -407,6 +409,8 @@ MonoBehaviour:
   velocity: {x: 0, y: 0}
   angularVelocity: 8
   maxAngularVelocity: 8
+  gravityMultiplier: 1
+  gravityDirection: {x: 0, y: -1}
   mass: 1
   momentOfInertia: 0
   maxMomentOfInertia: 0
@@ -643,6 +647,8 @@ MonoBehaviour:
   velocity: {x: 0, y: 0}
   angularVelocity: 8
   maxAngularVelocity: 8
+  gravityMultiplier: 1
+  gravityDirection: {x: 0, y: -1}
   mass: 1
   momentOfInertia: 0
   maxMomentOfInertia: 0
@@ -879,6 +885,8 @@ MonoBehaviour:
   velocity: {x: 0, y: 0}
   angularVelocity: 8
   maxAngularVelocity: 8
+  gravityMultiplier: 1
+  gravityDirection: {x: 0, y: -1}
   mass: 1
   momentOfInertia: 0
   maxMomentOfInertia: 0
@@ -1115,6 +1123,8 @@ MonoBehaviour:
   velocity: {x: 0, y: 0}
   angularVelocity: 8
   maxAngularVelocity: 8
+  gravityMultiplier: 1
+  gravityDirection: {x: 0, y: -1}
   mass: 1
   momentOfInertia: 0
   maxMomentOfInertia: 0
@@ -1351,6 +1361,8 @@ MonoBehaviour:
   velocity: {x: 0, y: 0}
   angularVelocity: 8
   maxAngularVelocity: 8
+  gravityMultiplier: 1
+  gravityDirection: {x: 0, y: -1}
   mass: 1
   momentOfInertia: 0
   maxMomentOfInertia: 0
@@ -1637,6 +1649,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1691363476}
   - component: {fileID: 1691363475}
+  - component: {fileID: 1691363477}
   m_Layer: 0
   m_Name: PhysicsManager
   m_TagString: Untagged
@@ -1658,7 +1671,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravity: -9.81
   applyGravity: 1
-  gravityDirection: {x: 0, y: -1}
   linearDragCoefficient: 0
   applyLinearDrag: 0
   torque: -150
@@ -1685,6 +1697,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1691363477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691363474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4790aac7ff0f84a419adf2183ff53049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2001771211
 GameObject:
   m_ObjectHideFlags: 0
@@ -1695,6 +1719,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2001771212}
   - component: {fileID: 2001771213}
+  - component: {fileID: 2001771214}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -1711,7 +1736,7 @@ Transform:
   m_GameObject: {fileID: 2001771211}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.5287588, y: -6.68, z: -0.040211923}
+  m_LocalPosition: {x: 0, y: -9, z: -0.040211923}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1730,6 +1755,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wallType: 3
+  draw: 1
+  length: 50
+  color: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &2001771214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2001771211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: {x: 0, y: 0}
+  angularVelocity: 0
+  maxAngularVelocity: 0
+  gravityMultiplier: 0
+  gravityDirection: {x: 0, y: -1}
+  mass: 1
+  momentOfInertia: 0
+  maxMomentOfInertia: 0
+  Forces: {x: 0, y: 0}
+  Torques: 0
+  restitution: 0.8
+  skipFrames: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

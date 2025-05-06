@@ -5,10 +5,8 @@ public class eduForces : MonoBehaviour
 {
     eduRigidBody[] rigidBodies;
 
-    public float gravity = -9.81f; 
+    public float gravity = -9.81f;
     public bool applyGravity = true;
-    /// <summary> Defaults to down; (0, -1) </summary>
-    [SerializeField] Vector2 gravityDirection = Vector2.down;
     
     public float linearDragCoefficient = 0f;
     public bool applyLinearDrag = false; 
@@ -38,8 +36,8 @@ public class eduForces : MonoBehaviour
     {
         foreach (eduRigidBody rigidBody in rigidBodies)
         {
-            float gravityMagnitude = Math.Abs(gravity * rigidBody.mass * (applied = applyGravity ? 1:0));
-            Vector2 gravityForce = gravityDirection * gravityMagnitude;
+            float gravityMagnitude = Math.Abs(gravity * rigidBody.mass * (applied = applyGravity ? 1:0)) * rigidBody.gravityMultiplier;
+            Vector2 gravityForce = rigidBody.gravityDirection * gravityMagnitude;
 
             float Torques = torque * (applied = applyTorque ? 1 : 0);
 

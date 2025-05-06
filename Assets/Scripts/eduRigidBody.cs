@@ -7,6 +7,10 @@ public class eduRigidBody : MonoBehaviour
     [SerializeField] float angularVelocity = 0;
     [SerializeField] float maxAngularVelocity = 0;
 
+    public float gravityMultiplier = 1.0f;
+    /// <summary> Defaults to down; (0, -1) </summary>
+    public Vector2 gravityDirection = Vector2.down;
+
     [SerializeField] public float mass = 1f;
     [SerializeField] public float momentOfInertia = 0;
     [SerializeField] float maxMomentOfInertia = 0;
