@@ -6,13 +6,11 @@ public class eduWallCollider : MonoBehaviour
 
     [SerializeField] WallType wallType = WallType.Top;
     [SerializeField] bool draw = true;
+    [SerializeField] float length = 50.0f;
+    [SerializeField] Color color = Color.red;
 
     void Start()
     {
-        
-        // Vector3 horizontalLine = new Vector3(transform.position.x-100, transform.position.x+100);
-        // Vector3 verticalLine = new Vector3(transform.position.y-100, transform.position.y+100);
-
         
     }
 
@@ -30,17 +28,17 @@ public class eduWallCollider : MonoBehaviour
     {
         if(isVertical())
         {
-            Vector3 verticalStartPosition = new Vector3(transform.position.x, transform.position.y-100);
-            Vector3 verticalEndPosition = new Vector3(transform.position.x, transform.position.y+100);
-            Debug.DrawLine(verticalStartPosition, verticalEndPosition, Color.red);
+            Vector3 verticalStartPosition = new Vector3(transform.position.x, transform.position.y-length/2);
+            Vector3 verticalEndPosition = new Vector3(transform.position.x, transform.position.y+length/2);
+            Debug.DrawLine(verticalStartPosition, verticalEndPosition, color);
             return;
         } 
 
         if(isHorizontal())
         {
-            Vector3 horizontalStartPosition = new Vector3(transform.position.x-100, transform.position.y);
-            Vector3 horizontalEndPosition = new Vector3(transform.position.x+100, transform.position.y);
-            Debug.DrawLine(horizontalStartPosition, horizontalEndPosition, Color.red);
+            Vector3 horizontalStartPosition = new Vector3(transform.position.x-length/2, transform.position.y);
+            Vector3 horizontalEndPosition = new Vector3(transform.position.x+length/2, transform.position.y);
+            Debug.DrawLine(horizontalStartPosition, horizontalEndPosition, color);
             return;
         }
     }
