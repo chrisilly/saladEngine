@@ -2,6 +2,8 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.Assertions;
+using Unity.Mathematics;
 
 public interface eduCollider
 {
@@ -33,13 +35,9 @@ public class eduCollisionDetection : MonoBehaviour
 
     void FixedUpdate()
     {
-        foreach(eduCircleCollider circle in circles)
-            foreach(eduWallCollider wall in walls)
-                if(CircleWallCollision(circle, wall))
-                {
-                    circle.OnCollide();
-                    break;
-                }
+        UpdateCircleWallCollisions();
+
+        UpdateCircleCollisions();
     }
 
     bool CircleWallCollision(eduCircleCollider circle, eduWallCollider wall)
@@ -56,11 +54,44 @@ public class eduCollisionDetection : MonoBehaviour
 
         return collision;
     }
-    
-    bool CircleCircleCollision(eduCircleCollider circle, eduCircleCollider other)
+
+    void UpdateCircleWallCollisions()
     {
+        foreach(eduCircleCollider circle in circles)
+            foreach(eduWallCollider wall in walls)
+                if(CircleWallCollision(circle, wall))
+                {
+                    circle.OnCollide();
+                    break;
+                }
+    }
+    
+    bool CircleCollision(eduCircleCollider circle, eduCircleCollider other)
+    {
+        Assert.AreNotEqual(circle, other); // if we pass the same circle colliders in both parameters, we have failed...
 
+        Vector2 distanceVector = circle.transform.position - other.transform.position;
+        float distance = Math.Abs(distanceVector.magnitude);
+        // float distance = Vector2.Distance(circle.transform.position, other.transform.position);
 
-        return false;
+        bool collision = distance <= circle.radius + other.radius;
+
+        return collision;
+    }
+
+    void UpdateCircleCollisions()
+    {
+        foreach(eduCircleCollider circle in circles)
+            foreach(eduCircleCollider other in circles)
+                {
+                    if(circle == other) continue; // no such thing as collision with oneself
+
+                    if(CircleCollision(circle, other))
+                    {
+                        circle.OnCollide();
+                        other.OnCollide();
+                        break;
+                    }
+                }
     }
 }
