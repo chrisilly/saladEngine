@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class eduCircleCollider : MonoBehaviour
+public class eduCircleCollider : MonoBehaviour, eduCollider
 {
     public float radius = 1.0f;
     public float density = 1.0f;
@@ -28,5 +28,10 @@ public class eduCircleCollider : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void OnCollide()
+    {
+        Debug.Log($"{name} has collided!");
     }
 }

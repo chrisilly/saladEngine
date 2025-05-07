@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class eduWallCollider : MonoBehaviour
+public class eduWallCollider : MonoBehaviour, eduCollider
 {
     enum WallType {Left, Right, Bottom, Top}
 
@@ -14,12 +14,12 @@ public class eduWallCollider : MonoBehaviour
         
     }
 
-    bool isVertical()
+    public bool isVertical()
     {
         return wallType == WallType.Right || wallType == WallType.Left;
     }
 
-    bool isHorizontal()
+    public bool isHorizontal()
     {
         return wallType == WallType.Top || wallType == WallType.Bottom;
     }
@@ -46,5 +46,10 @@ public class eduWallCollider : MonoBehaviour
     void FixedUpdate()
     {
         if(draw) Draw();
+    }
+
+    public void OnCollide()
+    {
+        // We don't actually want the wall to respond in any way to collision... unless?
     }
 }
