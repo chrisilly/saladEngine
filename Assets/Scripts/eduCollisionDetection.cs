@@ -110,10 +110,10 @@ public class eduCollisionDetection : MonoBehaviour
         circleBody.applyImpulse(impulse, collisionNormal);
         otherBody.applyImpulse(-impulse, collisionNormal);
 
-        float errorReduction = 0.5f;
+        float errorReduction = 0.8f;
         float Pn = errorReduction * (circle.mass * other.mass/(circle.mass + other.mass)) * penetration;
 
-        CorrectOverlap(circleBody, Pn, collisionNormal);
+        CorrectOverlap(circleBody, -Pn, collisionNormal);
         CorrectOverlap(otherBody, Pn, collisionNormal);
     }
 
