@@ -45,7 +45,28 @@ public class eduWallCollider : MonoBehaviour, eduCollider
 
     void FixedUpdate()
     {
-        if(draw) Draw();
+        // if(draw) Draw();
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = color;
+
+        if(isVertical() && draw)
+        {
+            Vector3 verticalStartPosition = new Vector3(transform.position.x, transform.position.y-length/2);
+            Vector3 verticalEndPosition = new Vector3(transform.position.x, transform.position.y+length/2);
+            Gizmos.DrawLine(verticalStartPosition, verticalEndPosition);
+            return;
+        } 
+
+        if(isHorizontal() && draw)
+        {
+            Vector3 horizontalStartPosition = new Vector3(transform.position.x-length/2, transform.position.y);
+            Vector3 horizontalEndPosition = new Vector3(transform.position.x+length/2, transform.position.y);
+            Gizmos.DrawLine(horizontalStartPosition, horizontalEndPosition);
+            return;
+        }
     }
 
     public void OnCollide()

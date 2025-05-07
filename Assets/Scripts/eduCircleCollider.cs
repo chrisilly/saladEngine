@@ -3,6 +3,8 @@ using UnityEngine.UIElements;
 
 public class eduCircleCollider : MonoBehaviour, eduCollider
 {
+    [SerializeField] bool draw = false;
+
     public float radius = 1.0f;
     public float density = 1.0f;
 
@@ -33,5 +35,11 @@ public class eduCircleCollider : MonoBehaviour, eduCollider
     public void OnCollide()
     {
         Debug.Log($"{name} has collided!");
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.white;
+        if(draw) Gizmos.DrawSphere(transform.position, radius);
     }
 }
