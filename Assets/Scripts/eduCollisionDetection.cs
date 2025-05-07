@@ -86,12 +86,48 @@ public class eduCollisionDetection : MonoBehaviour
                 {
                     if(circle == other) continue; // no such thing as collision with oneself
 
-                    if(CircleCollision(circle, other))
-                    {
-                        circle.OnCollide();
-                        other.OnCollide();
-                        break;
-                    }
+                    if(!CircleCollision(circle, other)) continue;
+
+                    if(!CirclesMovingApart(circle, other)) continue;
+
+                    circle.OnCollide();
+                    other.OnCollide();
+
+                    ResolveCollision(circle, other);
                 }
+    }
+
+    void ResolveCollision(eduCircleCollider circle, eduCircleCollider other)
+    {
+        eduRigidBody circleBody = circle.GetComponent<eduRigidBody>();
+        eduRigidBody otherBody = other.GetComponent<eduRigidBody>();
+        Vector2 distanceVector = other.transform.position - circle.transform.position;
+        float penetration = circle.radius + other.radius - distanceVector.magnitude;
+        Vector2 collisionNormal = distanceVector.normalized;
+
+        Vector2 impulse = ((circleBody.mass * otherBody.mass) / (circleBody.mass + otherBody.mass)) * (1 + circleBody.restitution) * (otherBody.GetVelocity() - circleBody.GetVelocity()) * collisionNormal;
+
+        circleBody.applyImpulse(impulse, collisionNormal);
+        otherBody.applyImpulse(-impulse, collisionNormal);
+
+        float errorReduction = 0.5f;
+        float Pn = errorReduction * (circle.mass * other.mass/(circle.mass + other.mass)) * penetration;
+
+        CorrectOverlap(circleBody, Pn, collisionNormal);
+        CorrectOverlap(otherBody, Pn, collisionNormal);
+    }
+
+    void CorrectOverlap(eduRigidBody rigidBody, float Pn, Vector3 normal)
+    {
+        rigidBody.transform.position += (Pn/rigidBody.mass) * normal;
+    }
+
+    bool CirclesMovingApart(eduCircleCollider circle, eduCircleCollider other)
+    {
+        Vector2 relativeMovement = other.GetComponent<eduRigidBody>().GetVelocity() - circle.GetComponent<eduRigidBody>().GetVelocity();
+        Vector2 distanceVector = circle.transform.position - other.transform.position;
+        float distance = Math.Abs(distanceVector.magnitude);
+
+        return relativeMovement.magnitude * distance > 0;
     }
 }

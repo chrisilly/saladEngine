@@ -19,7 +19,7 @@ public class eduRigidBody : MonoBehaviour
     public Vector2 Forces = Vector2.zero;
     public float Torques = 0;
 
-    [SerializeField] float restitution = 0.8f;
+    [SerializeField] public float restitution = 0.8f;
     [SerializeField] int skipFrames = 0;
     int frameCounter = 0;
     float timer;
@@ -88,6 +88,9 @@ public class eduRigidBody : MonoBehaviour
     /// <summary>
     /// We don't use this because it's listed as an optional method in the assignment doc
     /// </summary>
-    void applyImpulse(Vector2 impulse) {}
+    public void applyImpulse(Vector2 impulse, Vector2 normal) 
+    {
+        velocity += (impulse/mass) * normal;
+    }
 
 }
