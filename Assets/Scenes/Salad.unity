@@ -866,7 +866,7 @@ Transform:
   m_GameObject: {fileID: 509326408}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.074496, y: 9.55, z: -0.009486102}
+  m_LocalPosition: {x: 0, y: 9.55, z: -0.009486102}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -890,12 +890,12 @@ MonoBehaviour:
   maxAngularVelocity: 0
   gravityMultiplier: 0
   gravityDirection: {x: 0, y: -1}
-  mass: 10000000
+  mass: 1000000
   momentOfInertia: 0
   maxMomentOfInertia: 0
   Forces: {x: 0, y: 0}
   Torques: 0
-  restitution: 0.8
+  restitution: 1
   skipFrames: 0
 --- !u!114 &509326411
 MonoBehaviour:
@@ -912,7 +912,7 @@ MonoBehaviour:
   radius: 0
   wallType: 3
   draw: 1
-  length: 50
+  length: 20
   color: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &785650889
 GameObject:
@@ -1181,7 +1181,7 @@ Transform:
   m_GameObject: {fileID: 803625612}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 21.605505, y: -0.9021852, z: -0.009486102}
+  m_LocalPosition: {x: 21.605505, y: 0, z: -0.009486102}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1205,12 +1205,12 @@ MonoBehaviour:
   maxAngularVelocity: 0
   gravityMultiplier: 0
   gravityDirection: {x: 0, y: -1}
-  mass: 10000000
+  mass: 1000000
   momentOfInertia: 0
   maxMomentOfInertia: 0
   Forces: {x: 0, y: 0}
   Torques: 0
-  restitution: 0.8
+  restitution: 1
   skipFrames: 0
 --- !u!114 &803625615
 MonoBehaviour:
@@ -1227,7 +1227,7 @@ MonoBehaviour:
   radius: 0
   wallType: 1
   draw: 1
-  length: 50
+  length: 9
   color: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &981261818
 GameObject:
@@ -1463,7 +1463,7 @@ Transform:
   m_GameObject: {fileID: 981261818}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.09, y: -3.78, z: 0}
+  m_LocalPosition: {x: -13.09, y: -2.55, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1496,7 +1496,7 @@ Transform:
   m_GameObject: {fileID: 1307670126}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -21.794495, y: -0.9021852, z: -0.009486102}
+  m_LocalPosition: {x: -21.794495, y: 0, z: -0.009486102}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1520,12 +1520,12 @@ MonoBehaviour:
   maxAngularVelocity: 0
   gravityMultiplier: 0
   gravityDirection: {x: 0, y: -1}
-  mass: 10000000
+  mass: 1000000
   momentOfInertia: 0
   maxMomentOfInertia: 0
   Forces: {x: 0, y: 0}
   Torques: 0
-  restitution: 0.8
+  restitution: 1
   skipFrames: 0
 --- !u!114 &1307670129
 MonoBehaviour:
@@ -1542,7 +1542,7 @@ MonoBehaviour:
   radius: 0
   wallType: 0
   draw: 1
-  length: 50
+  length: 9
   color: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &1442326665
 GameObject:
@@ -1870,7 +1870,7 @@ Transform:
   m_GameObject: {fileID: 1646272127}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.81, y: -0.21, z: -10}
+  m_LocalPosition: {x: -6.81, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2009,7 +2009,7 @@ Transform:
   m_GameObject: {fileID: 2001771211}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.074496, y: -9.902185, z: -0.009486102}
+  m_LocalPosition: {x: 0, y: -9.902185, z: -0.009486102}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2030,7 +2030,7 @@ MonoBehaviour:
   radius: 0
   wallType: 2
   draw: 1
-  length: 50
+  length: 20
   color: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &2001771214
 MonoBehaviour:
@@ -2050,12 +2050,12 @@ MonoBehaviour:
   maxAngularVelocity: 0
   gravityMultiplier: 0
   gravityDirection: {x: 0, y: -1}
-  mass: 10000000
+  mass: 1000000
   momentOfInertia: 0
   maxMomentOfInertia: 0
   Forces: {x: 0, y: 0}
   Torques: 0
-  restitution: 0.8
+  restitution: 1
   skipFrames: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

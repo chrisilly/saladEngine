@@ -1,15 +1,17 @@
+using System;
 using UnityEngine;
 
 public class eduWallCollider : MonoBehaviour, eduCollider
 {
-    enum WallType {Left, Right, Bottom, Top}
+    public enum WallType {Left, Right, Bottom, Top}
 
-    public float radius = 0.0f; // wall thickness
-
-    [SerializeField] WallType wallType = WallType.Top;
+    [SerializeField] public WallType wallType = WallType.Top;
     [SerializeField] bool draw = true;
     [SerializeField] float length = 50.0f;
     [SerializeField] Color color = Color.red;
+    // [SerializeField] float slope = 0.0f;
+    [SerializeField] float angle = 0.0f;
+    public float radius = 0.0f; // wall thickness
 
     void Start()
     {
@@ -26,25 +28,6 @@ public class eduWallCollider : MonoBehaviour, eduCollider
         return wallType == WallType.Top || wallType == WallType.Bottom;
     }
 
-    void Draw()
-    {
-        if(isVertical())
-        {
-            Vector3 verticalStartPosition = new Vector3(transform.position.x, transform.position.y-length/2);
-            Vector3 verticalEndPosition = new Vector3(transform.position.x, transform.position.y+length/2);
-            Debug.DrawLine(verticalStartPosition, verticalEndPosition, color);
-            return;
-        } 
-
-        if(isHorizontal())
-        {
-            Vector3 horizontalStartPosition = new Vector3(transform.position.x-length/2, transform.position.y);
-            Vector3 horizontalEndPosition = new Vector3(transform.position.x+length/2, transform.position.y);
-            Debug.DrawLine(horizontalStartPosition, horizontalEndPosition, color);
-            return;
-        }
-    }
-
     void FixedUpdate()
     {
         // if(draw) Draw();
@@ -53,6 +36,17 @@ public class eduWallCollider : MonoBehaviour, eduCollider
     void OnDrawGizmos()
     {
         Gizmos.color = color;
+
+        float x = transform.position.x;
+        // float y = transform.position.y;
+
+        Vector3 startPosition = new Vector3(x, transform.position.y);
+        Vector3 endPosition = new Vector3(transform.position.x - (float)Math.Cos(angle)*length, transform.position.y - (float)Math.Sin(angle)*length);
+        Vector3 endPosition2 = new Vector3(transform.position.x - (float)Math.Cos(angle + 3.1415)*length, transform.position.y - (float)Math.Sin(angle + 3.1415)*length);
+        // Gizmos.DrawLine(startPosition, endPosition);
+        Gizmos.DrawLine(startPosition, endPosition);
+        Gizmos.DrawLine(startPosition, endPosition2);
+        return;
 
         if(isVertical() && draw)
         {
@@ -66,7 +60,6 @@ public class eduWallCollider : MonoBehaviour, eduCollider
         {
             Vector3 horizontalStartPosition = new Vector3(transform.position.x-length/2, transform.position.y);
             Vector3 horizontalEndPosition = new Vector3(transform.position.x+length/2, transform.position.y);
-            Gizmos.DrawLine(horizontalStartPosition, horizontalEndPosition);
             return;
         }
     }
