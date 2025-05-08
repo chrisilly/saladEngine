@@ -169,10 +169,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  immovable: 0
   velocity: {x: 0, y: 0}
   angularVelocity: 8
   maxAngularVelocity: 8
-  gravityMultiplier: 0
+  gravityMultiplier: 1
   gravityDirection: {x: 0, y: -1}
   mass: 1
   momentOfInertia: 0
@@ -408,10 +409,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  immovable: 0
   velocity: {x: 0, y: 0}
   angularVelocity: 8
   maxAngularVelocity: 8
-  gravityMultiplier: 0
+  gravityMultiplier: 1
   gravityDirection: {x: 0, y: -1}
   mass: 1
   momentOfInertia: 0
@@ -647,10 +649,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  immovable: 0
   velocity: {x: 0, y: 0}
   angularVelocity: 8
   maxAngularVelocity: 8
-  gravityMultiplier: 0
+  gravityMultiplier: 1
   gravityDirection: {x: 0, y: -1}
   mass: 1
   momentOfInertia: 0
@@ -881,12 +884,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  immovable: 1
   velocity: {x: 0, y: 0}
   angularVelocity: 0
   maxAngularVelocity: 0
   gravityMultiplier: 0
   gravityDirection: {x: 0, y: -1}
-  mass: 1
+  mass: 10000000
   momentOfInertia: 0
   maxMomentOfInertia: 0
   Forces: {x: 0, y: 0}
@@ -905,6 +909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9944b63235a7c33419fc1322cfee5969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  radius: 0
   wallType: 3
   draw: 1
   length: 50
@@ -959,10 +964,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  immovable: 0
   velocity: {x: 0, y: 0}
   angularVelocity: 8
   maxAngularVelocity: 8
-  gravityMultiplier: 0
+  gravityMultiplier: 1
   gravityDirection: {x: 0, y: -1}
   mass: 1
   momentOfInertia: 0
@@ -1193,12 +1199,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  immovable: 1
   velocity: {x: 0, y: 0}
   angularVelocity: 0
   maxAngularVelocity: 0
   gravityMultiplier: 0
   gravityDirection: {x: 0, y: -1}
-  mass: 1
+  mass: 10000000
   momentOfInertia: 0
   maxMomentOfInertia: 0
   Forces: {x: 0, y: 0}
@@ -1217,6 +1224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9944b63235a7c33419fc1322cfee5969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  radius: 0
   wallType: 1
   draw: 1
   length: 50
@@ -1271,10 +1279,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  immovable: 0
   velocity: {x: 0, y: 0}
   angularVelocity: 8
   maxAngularVelocity: 8
-  gravityMultiplier: 0
+  gravityMultiplier: 1
   gravityDirection: {x: 0, y: -1}
   mass: 1
   momentOfInertia: 0
@@ -1505,12 +1514,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  immovable: 1
   velocity: {x: 0, y: 0}
   angularVelocity: 0
   maxAngularVelocity: 0
   gravityMultiplier: 0
   gravityDirection: {x: 0, y: -1}
-  mass: 1
+  mass: 10000000
   momentOfInertia: 0
   maxMomentOfInertia: 0
   Forces: {x: 0, y: 0}
@@ -1529,6 +1539,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9944b63235a7c33419fc1322cfee5969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  radius: 0
   wallType: 0
   draw: 1
   length: 50
@@ -1583,10 +1594,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  immovable: 0
   velocity: {x: 0, y: 0}
   angularVelocity: 8
   maxAngularVelocity: 8
-  gravityMultiplier: 0
+  gravityMultiplier: 1
   gravityDirection: {x: 0, y: -1}
   mass: 1
   momentOfInertia: 0
@@ -2015,6 +2027,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9944b63235a7c33419fc1322cfee5969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  radius: 0
   wallType: 2
   draw: 1
   length: 50
@@ -2031,12 +2044,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  immovable: 1
   velocity: {x: 0, y: 0}
   angularVelocity: 0
   maxAngularVelocity: 0
   gravityMultiplier: 0
   gravityDirection: {x: 0, y: -1}
-  mass: 1
+  mass: 10000000
   momentOfInertia: 0
   maxMomentOfInertia: 0
   Forces: {x: 0, y: 0}

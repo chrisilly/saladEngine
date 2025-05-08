@@ -4,6 +4,8 @@ public class eduWallCollider : MonoBehaviour, eduCollider
 {
     enum WallType {Left, Right, Bottom, Top}
 
+    public float radius = 0.0f; // wall thickness
+
     [SerializeField] WallType wallType = WallType.Top;
     [SerializeField] bool draw = true;
     [SerializeField] float length = 50.0f;

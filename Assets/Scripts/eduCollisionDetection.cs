@@ -10,6 +10,65 @@ public interface eduCollider
     void OnCollide();
 }
 
+public class Contact
+{
+    eduRigidBody body;
+    eduRigidBody other;
+    Vector3 collisionNormal; // body->other
+    float penetration;
+
+    public Contact()
+    {
+
+    }
+
+    public Contact(eduRigidBody body, eduRigidBody other, Vector3 collisionNormal, float penetration)
+    {
+        this.body = body;
+        this.other = other;
+        this.collisionNormal = collisionNormal;
+        this.penetration = penetration;
+    }
+
+    public void Solve()
+    {
+        Assert.IsTrue(circleWall(body, other) || circleCircle(body, other));
+        
+        Vector2 impulse = ((body.mass * other.mass) / (body.mass + other.mass)) * (1 + body.restitution) * (other.GetVelocity() - body.GetVelocity()) * collisionNormal;
+
+        //Apply Impulses
+        body.applyImpulse(impulse, collisionNormal);
+        other.applyImpulse(-impulse, collisionNormal);
+
+        //Overlap Correction
+        float errorReduction = 0.8f;
+        float Pn = errorReduction * (body.mass * other.mass/(body.mass + other.mass)) * penetration;
+        CorrectOverlap(body, -Pn);
+        CorrectOverlap(other, Pn);
+    }
+
+    bool circleWall(eduRigidBody body, eduRigidBody other)
+    {
+        bool oneCircle = body.GetComponent<eduCircleCollider>() != null || other.GetComponent<eduCircleCollider>() != null;
+        bool oneWall = body.GetComponent<eduWallCollider>() != null || other.GetComponent<eduWallCollider>() != null;
+
+        return oneCircle && oneWall;
+    }
+
+    bool circleCircle(eduRigidBody body, eduRigidBody other)
+    {
+        bool bodyIsCircle = body.GetComponent<eduCircleCollider>() != null;
+        bool otherIsCircle = other.GetComponent<eduCircleCollider>() != null;
+
+        return bodyIsCircle && otherIsCircle;
+    }
+
+    void CorrectOverlap(eduRigidBody body, float Pn)
+    {
+        body.transform.position += (Pn/body.mass) * collisionNormal;
+    }
+}
+
 public class eduCollisionDetection : MonoBehaviour
 {
     List<eduCollider> colliders;
@@ -35,9 +94,7 @@ public class eduCollisionDetection : MonoBehaviour
 
     void FixedUpdate()
     {
-        UpdateCircleWallCollisions();
-
-        UpdateCircleCollisions();
+        UpdateCollisions();
     }
 
     bool CircleWallCollision(eduCircleCollider circle, eduWallCollider wall)
@@ -54,17 +111,6 @@ public class eduCollisionDetection : MonoBehaviour
 
         return collision;
     }
-
-    void UpdateCircleWallCollisions()
-    {
-        foreach(eduCircleCollider circle in circles)
-            foreach(eduWallCollider wall in walls)
-                if(CircleWallCollision(circle, wall))
-                {
-                    circle.OnCollide();
-                    break;
-                }
-    }
     
     bool CircleCollision(eduCircleCollider circle, eduCircleCollider other)
     {
@@ -79,53 +125,61 @@ public class eduCollisionDetection : MonoBehaviour
         return collision;
     }
 
-    void UpdateCircleCollisions()
+    void UpdateCollisions()
     {
         foreach(eduCircleCollider circle in circles)
-            foreach(eduCircleCollider other in circles)
-                {
-                    if(circle == other) continue; // no such thing as collision with oneself
-
-                    if(!CircleCollision(circle, other)) continue;
-
-                    if(!CirclesMovingApart(circle, other)) continue;
-
-                    circle.OnCollide();
-                    other.OnCollide();
-
-                    ResolveCollision(circle, other);
-                }
+        {
+            UpdateCircleCollisions(circle);
+            UpdateWallCollisions(circle);
+        }
     }
 
-    void ResolveCollision(eduCircleCollider circle, eduCircleCollider other)
+    void UpdateWallCollisions(eduCircleCollider circle)
     {
-        eduRigidBody circleBody = circle.GetComponent<eduRigidBody>();
-        eduRigidBody otherBody = other.GetComponent<eduRigidBody>();
-        Vector2 distanceVector = other.transform.position - circle.transform.position;
-        float penetration = circle.radius + other.radius - distanceVector.magnitude;
-        Vector2 collisionNormal = distanceVector.normalized;
+        foreach(eduWallCollider wall in walls)
+        {
+            if(!CircleWallCollision(circle, wall)) continue;
 
-        Vector2 impulse = ((circleBody.mass * otherBody.mass) / (circleBody.mass + otherBody.mass)) * (1 + circleBody.restitution) * (otherBody.GetVelocity() - circleBody.GetVelocity()) * collisionNormal;
+            eduRigidBody circleBody = circle.GetComponent<eduRigidBody>();
+            eduRigidBody wallBody = wall.GetComponent<eduRigidBody>();
 
-        circleBody.applyImpulse(impulse, collisionNormal);
-        otherBody.applyImpulse(-impulse, collisionNormal);
+            if(!MovingApart(circleBody, wallBody)) continue;
 
-        float errorReduction = 0.8f;
-        float Pn = errorReduction * (circle.mass * other.mass/(circle.mass + other.mass)) * penetration;
+            Vector2 distanceVector = wall.transform.position - circleBody.transform.position;
+            Vector2 collisionNormal = distanceVector.normalized;
+            float penetration = circle.radius + wall.radius - distanceVector.magnitude;
 
-        CorrectOverlap(circleBody, -Pn, collisionNormal);
-        CorrectOverlap(otherBody, Pn, collisionNormal);
+            Contact contact = new Contact(circleBody, wallBody, collisionNormal, penetration);
+            contact.Solve();
+        }
     }
 
-    void CorrectOverlap(eduRigidBody rigidBody, float Pn, Vector3 normal)
+    void UpdateCircleCollisions(eduCircleCollider circle)
     {
-        rigidBody.transform.position += (Pn/rigidBody.mass) * normal;
+        foreach(eduCircleCollider other in circles)
+        {
+            if(circle == other) continue; // no such thing as collision with oneself
+
+            if(!CircleCollision(circle, other)) continue;
+
+            eduRigidBody circleBody = circle.GetComponent<eduRigidBody>();
+            eduRigidBody otherBody = other.GetComponent<eduRigidBody>();
+
+            if(!MovingApart(circleBody, otherBody)) continue;
+
+            Vector2 distanceVector = other.transform.position - circleBody.transform.position;
+            Vector2 collisionNormal = distanceVector.normalized;
+            float penetration = circle.radius + other.radius - distanceVector.magnitude;
+
+            Contact contact = new Contact(circleBody, otherBody, collisionNormal, penetration);
+            contact.Solve();
+        }
     }
 
-    bool CirclesMovingApart(eduCircleCollider circle, eduCircleCollider other)
+    bool MovingApart(eduRigidBody rigidBody, eduRigidBody other)
     {
-        Vector2 relativeMovement = other.GetComponent<eduRigidBody>().GetVelocity() - circle.GetComponent<eduRigidBody>().GetVelocity();
-        Vector2 distanceVector = circle.transform.position - other.transform.position;
+        Vector2 relativeMovement = other.GetVelocity() - rigidBody.GetVelocity();
+        Vector2 distanceVector = rigidBody.transform.position - other.transform.position;
         float distance = Math.Abs(distanceVector.magnitude);
 
         return relativeMovement.magnitude * distance > 0;
