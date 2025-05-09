@@ -83,6 +83,39 @@ public class eduRigidBody : MonoBehaviour
         Torques += torque;
     }
 
+    public float findSegmentArea() 
+    {
+        float radius = GetComponentInParent<eduCircleCollider>().radius;
+        float y;
+        //if (submergedHeight < radius)
+        //{
+        //    y = radius - submergedHeight;
+        //    float angle = Mathf.Acos(y / radius);
+        //    float chordLength = 2 * Mathf.Sqrt((radius * radius) - (y * y));
+        //    float sectorArea = area * (2 * angle / (2 * Mathf.PI));
+        //    float segmentArea = sectorArea - (chordLength * y);
+        //    Debug.Log($"y {y}, angle {angle}, chord {chordLength}, sector {sectorArea}, segment {segmentArea}");
+
+        //    return segmentArea;
+
+        //}
+        //else
+        //{
+        //    y = submergedHeight - radius;
+        //}
+
+        y = radius - submergedHeight;
+        float angle = Mathf.Acos(y / radius);
+        float chordLength = 2 * Mathf.Sqrt((radius * radius) - (y * y));
+        float sectorArea = area * (2 * angle / (2 * Mathf.PI));
+        float segmentArea = sectorArea - (chordLength * y);
+        Debug.Log($"y {y}, angle {angle}, chord {chordLength}, sector {sectorArea}, segment {segmentArea}");
+
+        return 0;
+
+        
+    }
+
     /// <summary>
     /// We don't use this because it's listed as an optional method in the assignment doc
     /// </summary>

@@ -48,23 +48,26 @@ public class eduForces : MonoBehaviour
             rigidBody.applyTorque(Torques);     // Apply torque to each rigid body
 
             ///<summary> The following section is the math needed for buoyancy. Most likely incomplete and non-functioning. Just so you know.</summary>
-            float buoyancyMagnitude = fluidDensity * Mathf.Abs(gravity);
+            float buoyancyMagnitude = fluidDensity * 9.81f;//Mathf.Abs(gravity);
             //density * gravity;
-            rigidBody.submergedHeight  = rigidBody.transform.position.y - rigidBody.GetComponentInParent<eduCircleCollider>().radius - waterLevel;
+            rigidBody.submergedHeight = Math.Clamp(waterLevel - (rigidBody.transform.position.y - rigidBody.GetComponentInParent<eduCircleCollider>().radius), 0.0f, 2 * rigidBody.GetComponentInParent<eduCircleCollider>().radius);
+
             //Figure out the submerged height of the object 
-            Math.Clamp(rigidBody.submergedHeight, 0.0f, 1.0f);
             //Since we're trying to find the submerged volume of the object, we clamp between 0 (none of the object is submerged) and the diameter (the whole object is submerged)
-            Debug.Log($"Submerged height is: {rigidBody.submergedHeight}");
-            //BUG! Submerged height does not clamp.
 
             //Turn the submerged height into a volume
-            float submergedVolume = 0;
+            float submergedVolume = rigidBody.findSegmentArea();
             
-
             //Commented out code below is mathematically incorrect but keeping here because might need for future reference
             //(transform.position.y + rigidBody.GetComponentInParent<eduCircleCollider>().radius - waterLevel) - (transform.position.y - rigidBody.GetComponentInParent<eduCircleCollider>().radius - waterLevel); 
 
             buoyancyForce = buoyancyMagnitude * submergedVolume * (applied = applyBuoyancy ? 1 : 0);
+            Debug.Log($"Buoyancy Force {buoyancyForce}");
+            if (buoyancyForce <= 0.0f)
+            {
+                Debug.Log($" volume {submergedVolume}, height {rigidBody.submergedHeight}, magnitude {buoyancyMagnitude}");
+            }
+            rigidBody.applyForce(buoyancyForce);
         }
     }
     // Update is called once per frame
