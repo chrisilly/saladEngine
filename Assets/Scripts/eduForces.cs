@@ -22,7 +22,8 @@ public class eduForces : MonoBehaviour
     public float windForce = 0f;
     public bool applyWind = false;
     
-    public float fluidDensity = 0f; 
+    public float buoyancyForce = 0f;
+    public float fluidDensity = 0f;
     public float waterLevel = 0f; //How high the water is
     public bool applyBuoyancy = false;
 
@@ -45,6 +46,25 @@ public class eduForces : MonoBehaviour
 
             rigidBody.applyForce(gravityForce); // Apply gravity to each rigid body, activate and deactivate with a bool. Alternatively use Convert.ToInt32(applyGravity)
             rigidBody.applyTorque(Torques);     // Apply torque to each rigid body
+
+            ///<summary> The following section is the math needed for buoyancy. Most likely incomplete and non-functioning. Just so you know.</summary>
+            float buoyancyMagnitude = fluidDensity * Mathf.Abs(gravity);
+            //density * gravity;
+            rigidBody.submergedHeight  = rigidBody.transform.position.y - rigidBody.GetComponentInParent<eduCircleCollider>().radius - waterLevel;
+            //Figure out the submerged height of the object 
+            Math.Clamp(rigidBody.submergedHeight, 0.0f, 1.0f);
+            //Since we're trying to find the submerged volume of the object, we clamp between 0 (none of the object is submerged) and the diameter (the whole object is submerged)
+            Debug.Log($"Submerged height is: {rigidBody.submergedHeight}");
+            //BUG! Submerged height does not clamp.
+
+            //Turn the submerged height into a volume
+            float submergedVolume = 0;
+            
+
+            //Commented out code below is mathematically incorrect but keeping here because might need for future reference
+            //(transform.position.y + rigidBody.GetComponentInParent<eduCircleCollider>().radius - waterLevel) - (transform.position.y - rigidBody.GetComponentInParent<eduCircleCollider>().radius - waterLevel); 
+
+            buoyancyForce = buoyancyMagnitude * submergedVolume * (applied = applyBuoyancy ? 1 : 0);
         }
     }
     // Update is called once per frame

@@ -7,9 +7,12 @@ public class eduRigidBody : MonoBehaviour
     [SerializeField] float angularVelocity = 0;
     [SerializeField] float maxAngularVelocity = 0;
 
+    // Make get and set functions for the public fellas. No need to expose them to the world.
     [SerializeField] public float mass = 1f;
     [SerializeField] public float momentOfInertia = 0;
     [SerializeField] float maxMomentOfInertia = 0;
+    [SerializeField] public float area;
+    [SerializeField] public float submergedHeight = 0f;
     bool hitZero;
 
     public Vector2 Forces = Vector2.zero;
@@ -43,11 +46,10 @@ public class eduRigidBody : MonoBehaviour
         float rotation = Mathf.Rad2Deg * angularVelocity * variableTimeStep;
         
         transform.rotation *= Quaternion.Euler(0,0,rotation);
-        
+
         //Vector3 rotation = new Vector3(0f, 0f, variableTimeStep * (Mathf.Rad2Deg * angularVelocity));
         //NOTE: Works "as intended" in that it adds torques and all that jazz correctly, however it drops straight to -infinity.
         //NOTE: transform.Rotate works based on EULER angles. Angular velocity and such work off of RADIANS. Conversion is necessary.
-        
         Forces = Vector2.zero;
         Torques = 0;
         frameCounter = 0;
