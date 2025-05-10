@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using NUnit.Framework.Constraints;
 
 public class eduForces : MonoBehaviour
 {
@@ -22,10 +23,11 @@ public class eduForces : MonoBehaviour
     public float windForce = 0f;
     public bool applyWind = false;
     
-    public float buoyancyForce = 0f;
+    public Vector2 buoyancyForce = new Vector2(0,0);
     public float fluidDensity = 0f;
     public float waterLevel = 0f; //How high the water is
     public bool applyBuoyancy = false;
+    public float submergedVolume = 0f;
 
     int applied;
 
@@ -48,7 +50,7 @@ public class eduForces : MonoBehaviour
             rigidBody.applyTorque(Torques);     // Apply torque to each rigid body
 
             ///<summary> The following section is the math needed for buoyancy. Most likely incomplete and non-functioning. Just so you know.</summary>
-            float buoyancyMagnitude = fluidDensity * 9.81f;//Mathf.Abs(gravity);
+            float buoyancyMagnitude = fluidDensity * Mathf.Abs(gravity);
             //density * gravity;
             rigidBody.submergedHeight = Math.Clamp(waterLevel - (rigidBody.transform.position.y - rigidBody.GetComponentInParent<eduCircleCollider>().radius), 0.0f, 2 * rigidBody.GetComponentInParent<eduCircleCollider>().radius);
 
@@ -56,14 +58,14 @@ public class eduForces : MonoBehaviour
             //Since we're trying to find the submerged volume of the object, we clamp between 0 (none of the object is submerged) and the diameter (the whole object is submerged)
 
             //Turn the submerged height into a volume
-            float submergedVolume = rigidBody.findSegmentArea();
+            submergedVolume = rigidBody.findSegmentArea();
             
             //Commented out code below is mathematically incorrect but keeping here because might need for future reference
             //(transform.position.y + rigidBody.GetComponentInParent<eduCircleCollider>().radius - waterLevel) - (transform.position.y - rigidBody.GetComponentInParent<eduCircleCollider>().radius - waterLevel); 
 
-            buoyancyForce = buoyancyMagnitude * submergedVolume * (applied = applyBuoyancy ? 1 : 0);
+            buoyancyForce.y = buoyancyMagnitude * submergedVolume * (applied = applyBuoyancy ? 1 : 0);
             Debug.Log($"Buoyancy Force {buoyancyForce}");
-            if (buoyancyForce <= 0.0f)
+            if (buoyancyForce.y <= 0.0f)
             {
                 Debug.Log($" volume {submergedVolume}, height {rigidBody.submergedHeight}, magnitude {buoyancyMagnitude}");
             }

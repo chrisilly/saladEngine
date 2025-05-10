@@ -1156,7 +1156,7 @@ MonoBehaviour:
   linearDragCoefficient: 0
   applyLinearDrag: 0
   torque: -150
-  applyTorque: 1
+  applyTorque: 0
   angularDragCoefficient: 0
   applyAngularDrag: 0
   windForce: 0
@@ -1165,6 +1165,7 @@ MonoBehaviour:
   fluidDensity: 997
   waterLevel: -10
   applyBuoyancy: 1
+  submergedVolume: 0
 --- !u!1 &1591327240
 GameObject:
   m_ObjectHideFlags: 0
