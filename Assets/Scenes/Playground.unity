@@ -1151,7 +1151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravity: -9.81
-  applyGravity: 0
+  applyGravity: 1
   gravityDirection: {x: 0, y: -1}
   linearDragCoefficient: 0
   applyLinearDrag: 0
@@ -1161,7 +1161,7 @@ MonoBehaviour:
   applyAngularDrag: 0
   windForce: 0
   applyWind: 0
-  buoyancyForce: 0
+  buoyancyForce: {x: 0, y: 0}
   fluidDensity: 997
   waterLevel: -10
   applyBuoyancy: 1
