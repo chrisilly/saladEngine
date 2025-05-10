@@ -359,6 +359,81 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &344049295
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 344049296}
+  - component: {fileID: 344049298}
+  - component: {fileID: 344049297}
+  m_Layer: 0
+  m_Name: Wall
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &344049296
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 344049295}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1684749749}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &344049297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 344049295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  immovable: 0
+  velocity: {x: 0, y: 0}
+  angularVelocity: 0
+  maxAngularVelocity: 0
+  gravityMultiplier: 0
+  gravityDirection: {x: 0, y: -1}
+  mass: 1000000
+  momentOfInertia: 0
+  maxMomentOfInertia: 0
+  Forces: {x: 0, y: 0}
+  Torques: 0
+  restitution: 1
+  skipFrames: 0
+--- !u!114 &344049298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 344049295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9944b63235a7c33419fc1322cfee5969, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wallType: 3
+  draw: 1
+  length: 3
+  color: {r: 1, g: 0, b: 0, a: 1}
+  angle: 0
 --- !u!1 &365530191
 GameObject:
   m_ObjectHideFlags: 0
@@ -866,7 +941,7 @@ Transform:
   m_GameObject: {fileID: 509326408}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 9.55, z: -0.009486102}
+  m_LocalPosition: {x: 0, y: 9.55, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -884,7 +959,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  immovable: 1
+  immovable: 0
   velocity: {x: 0, y: 0}
   angularVelocity: 0
   maxAngularVelocity: 0
@@ -909,11 +984,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9944b63235a7c33419fc1322cfee5969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 0
   wallType: 3
   draw: 1
   length: 20
   color: {r: 1, g: 0, b: 0, a: 1}
+  angle: 0
 --- !u!1 &785650889
 GameObject:
   m_ObjectHideFlags: 0
@@ -1181,7 +1256,7 @@ Transform:
   m_GameObject: {fileID: 803625612}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 21.605505, y: 0, z: -0.009486102}
+  m_LocalPosition: {x: 21.605505, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1199,7 +1274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  immovable: 1
+  immovable: 0
   velocity: {x: 0, y: 0}
   angularVelocity: 0
   maxAngularVelocity: 0
@@ -1224,11 +1299,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9944b63235a7c33419fc1322cfee5969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 0
   wallType: 1
   draw: 1
-  length: 9
+  length: 11.55
   color: {r: 1, g: 0, b: 0, a: 1}
+  angle: 0
 --- !u!1 &981261818
 GameObject:
   m_ObjectHideFlags: 0
@@ -1496,7 +1571,7 @@ Transform:
   m_GameObject: {fileID: 1307670126}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -21.794495, y: 0, z: -0.009486102}
+  m_LocalPosition: {x: -21.794495, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1514,7 +1589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  immovable: 1
+  immovable: 0
   velocity: {x: 0, y: 0}
   angularVelocity: 0
   maxAngularVelocity: 0
@@ -1539,11 +1614,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9944b63235a7c33419fc1322cfee5969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 0
   wallType: 0
   draw: 1
   length: 9
   color: {r: 1, g: 0, b: 0, a: 1}
+  angle: 0
 --- !u!1 &1442326665
 GameObject:
   m_ObjectHideFlags: 0
@@ -1910,6 +1985,7 @@ Transform:
   - {fileID: 803625613}
   - {fileID: 1307670127}
   - {fileID: 509326409}
+  - {fileID: 344049296}
   m_Father: {fileID: 1646272130}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1691363474
@@ -2009,7 +2085,7 @@ Transform:
   m_GameObject: {fileID: 2001771211}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -9.902185, z: -0.009486102}
+  m_LocalPosition: {x: 0, y: -10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2027,11 +2103,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9944b63235a7c33419fc1322cfee5969, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 0
   wallType: 2
   draw: 1
-  length: 20
+  length: 1
   color: {r: 1, g: 0, b: 0, a: 1}
+  angle: 0
 --- !u!114 &2001771214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2044,7 +2120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  immovable: 1
+  immovable: 0
   velocity: {x: 0, y: 0}
   angularVelocity: 0
   maxAngularVelocity: 0

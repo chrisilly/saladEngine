@@ -1,4 +1,6 @@
 using System;
+using UnityEditor;
+using UnityEditor.TerrainTools;
 using UnityEngine;
 
 public class eduWallCollider : MonoBehaviour, eduCollider
@@ -10,8 +12,8 @@ public class eduWallCollider : MonoBehaviour, eduCollider
     [SerializeField] float length = 50.0f;
     [SerializeField] Color color = Color.red;
     // [SerializeField] float slope = 0.0f;
-    [SerializeField] float angle = 0.0f;
-    public float radius = 0.0f; // wall thickness
+    [Range((float)-Math.PI/2, (float)Math.PI/2)] public float angle = 0.0f;
+    [NonSerialized] public float radius = 0.0f; // wall thickness
 
     void Start()
     {
@@ -46,22 +48,6 @@ public class eduWallCollider : MonoBehaviour, eduCollider
         // Gizmos.DrawLine(startPosition, endPosition);
         Gizmos.DrawLine(startPosition, endPosition);
         Gizmos.DrawLine(startPosition, endPosition2);
-        return;
-
-        if(isVertical() && draw)
-        {
-            Vector3 verticalStartPosition = new Vector3(transform.position.x, transform.position.y-length/2);
-            Vector3 verticalEndPosition = new Vector3(transform.position.x, transform.position.y+length/2);
-            Gizmos.DrawLine(verticalStartPosition, verticalEndPosition);
-            return;
-        } 
-
-        if(isHorizontal() && draw)
-        {
-            Vector3 horizontalStartPosition = new Vector3(transform.position.x-length/2, transform.position.y);
-            Vector3 horizontalEndPosition = new Vector3(transform.position.x+length/2, transform.position.y);
-            return;
-        }
     }
 
     public void OnCollide()
