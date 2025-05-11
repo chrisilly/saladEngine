@@ -49,6 +49,15 @@ public class eduForces : MonoBehaviour
     void Update()
     {
         //Draw lines for forces and trajectories
+        foreach (var rigidBody in rigidBodies)
+        {
+            Debug.DrawLine(rigidBody.transform.position, rigidBody.transform.position + ToVector3(rigidBody.GetVelocity()), Color.green);
+        }
         //Change execution order settings so this runs before eduRigidBody.Update()
+    }
+
+    static public Vector3 ToVector3(Vector2 vector)
+    {
+        return new Vector3(vector.x, vector.y, 0);
     }
 }
