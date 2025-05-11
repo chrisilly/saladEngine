@@ -13,6 +13,7 @@ public class eduRigidBody : MonoBehaviour
     [SerializeField] float maxMomentOfInertia = 0;
     [SerializeField] public float area;
     [SerializeField] public float submergedHeight = 0f;
+    [SerializeField] public float submergedVolume = 0f;
     bool hitZero;
 
     public Vector2 Forces = Vector2.zero;
@@ -88,16 +89,17 @@ public class eduRigidBody : MonoBehaviour
         float radius = GetComponentInParent<eduCircleCollider>().radius;
         float y;
 
-        //Text below only works for when the water level is below the center point of the circle
-        //otherwise mathematically (despite not functionally) incorrect
-
         y = radius - submergedHeight;
         float angle = Mathf.Acos(y / radius);
         float chordLength = 2 * Mathf.Sqrt((radius * radius) - (y * y));
         float sectorArea = area * (2 * angle / (2 * Mathf.PI));
-        float segmentArea = sectorArea - (chordLength * y) / 2;
-        Debug.Log($"y {y}, angle {angle}, chord {chordLength}, sector {sectorArea}, segment {segmentArea}");
-        return segmentArea;
+        submergedVolume = sectorArea - (chordLength * y) / 2;
+        return submergedVolume;
+    }
+
+    public void FindSubmergedHeight(float waterLevel)
+    {
+        submergedHeight = Math.Clamp(waterLevel - (transform.position.y - GetComponentInParent<eduCircleCollider>().radius), 0.0f, 2 * GetComponentInParent<eduCircleCollider>().radius);
     }
 
     /// <summary>

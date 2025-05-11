@@ -48,28 +48,7 @@ public class eduForces : MonoBehaviour
 
             rigidBody.applyForce(gravityForce); // Apply gravity to each rigid body, activate and deactivate with a bool. Alternatively use Convert.ToInt32(applyGravity)
             rigidBody.applyTorque(Torques);     // Apply torque to each rigid body
-
-            ///<summary> The following section is the math needed for buoyancy. Most likely incomplete and non-functioning. Just so you know.</summary>
-            float buoyancyMagnitude = fluidDensity * Mathf.Abs(gravity);
-            //density * gravity;
-            rigidBody.submergedHeight = Math.Clamp(waterLevel - (rigidBody.transform.position.y - rigidBody.GetComponentInParent<eduCircleCollider>().radius), 0.0f, 2 * rigidBody.GetComponentInParent<eduCircleCollider>().radius);
-            Debug.Log($"SubmergedHeight: {rigidBody.submergedHeight}");
-            //Figure out the submerged height of the object 
-            //Since we're trying to find the submerged volume of the object, we clamp between 0 (none of the object is submerged) and the diameter (the whole object is submerged)
-
-            //Turn the submerged height into a volume
-            submergedVolume = rigidBody.findSegmentArea();
-            
-            //Commented out code below is mathematically incorrect but keeping here because might need for future reference
-            //(transform.position.y + rigidBody.GetComponentInParent<eduCircleCollider>().radius - waterLevel) - (transform.position.y - rigidBody.GetComponentInParent<eduCircleCollider>().radius - waterLevel); 
-
-            buoyancyForce.y = buoyancyMagnitude * submergedVolume * (applied = applyBuoyancy ? 1 : 0);
-            Debug.Log($"Buoyancy Force {buoyancyForce}");
-            if (buoyancyForce.y <= 0.0f)
-            {
-                Debug.Log($" volume {submergedVolume}, height {rigidBody.submergedHeight}, magnitude {buoyancyMagnitude}");
-            }
-            rigidBody.applyForce(buoyancyForce);
+            rigidBody.applyForce(BuoyancyForce(rigidBody)); //Apply buoyancy to each rigid body
         }
     }
     // Update is called once per frame
@@ -78,5 +57,21 @@ public class eduForces : MonoBehaviour
         Debug.DrawLine(new Vector3(-100, waterLevel, 0), new Vector3(100, waterLevel, 0));
         //Draw lines for forces and trajectories
         //Change execution order settings so this runs before eduRigidBody.Update()
+    }
+
+    public Vector2 BuoyancyForce(eduRigidBody rigidBody)
+    {
+        ///<summary> The following section is the math needed for buoyancy. Most likely incomplete and non-functioning. Just so you know.</summary>
+        float buoyancyMagnitude = fluidDensity * Mathf.Abs(gravity);
+        //density * gravity;
+        rigidBody.FindSubmergedHeight(waterLevel);
+        //Figure out the submerged height of the object 
+        //Since we're trying to find the submerged volume of the object, we clamp between 0 (none of the object is submerged) and the diameter (the whole object is submerged)
+
+        //Find the submerged volume (i.e. area of the segment under water)
+        rigidBody.findSegmentArea();
+
+        buoyancyForce.y = buoyancyMagnitude * rigidBody.submergedVolume * (applied = applyBuoyancy ? 1 : 0);
+        return buoyancyForce;
     }
 }
