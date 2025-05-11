@@ -74,7 +74,7 @@ public class eduCollisionDetection : MonoBehaviour
             eduRigidBody circleBody = circle.GetComponent<eduRigidBody>();
             eduRigidBody wallBody = wall.GetComponent<eduRigidBody>();
 
-            if(!MovingApart(circleBody, wallBody)) continue;
+            if(MovingApart(circleBody, wallBody)) continue;
 
             float penetration = circle.radius - CircleWallDistance(circle, wall);
 
@@ -94,7 +94,7 @@ public class eduCollisionDetection : MonoBehaviour
             eduRigidBody circleBody = circle.GetComponent<eduRigidBody>();
             eduRigidBody otherBody = other.GetComponent<eduRigidBody>();
 
-            if(!MovingApart(circleBody, otherBody)) continue;
+            if(MovingApart(circleBody, otherBody)) continue;
 
             Vector2 distanceVector = other.transform.position - circleBody.transform.position;
             Vector2 collisionNormal = distanceVector.normalized;
@@ -105,13 +105,16 @@ public class eduCollisionDetection : MonoBehaviour
         }
     }
 
-    bool MovingApart(eduRigidBody rigidBody, eduRigidBody other)
+    bool MovingApart(eduRigidBody body, eduRigidBody other)
     {
-        Vector2 relativeMovement = other.GetVelocity() - rigidBody.GetVelocity();
-        Vector2 distanceVector = rigidBody.transform.position - other.transform.position;
+        Vector2 relativeVelocity = other.GetVelocity() - body.GetVelocity();
+        float velocityAlongNormal = Vector2.Dot(relativeVelocity, GetCollisionNormal(body, other));
+        return velocityAlongNormal > 0;
+
+        Vector2 distanceVector = body.transform.position - other.transform.position;
         float distance = Math.Abs(distanceVector.magnitude);
 
-        return relativeMovement.magnitude * distance > 0;
+        return relativeVelocity.magnitude * distance > 0;
     }
 
     float CircleWallDistance(eduCircleCollider circle, eduWallCollider wall)
@@ -122,5 +125,19 @@ public class eduCollisionDetection : MonoBehaviour
                                 - Math.Sin(wall.angle) * (wall.transform.position.x - circle.transform.position.x));
 
         return distance;
+    }
+
+    Vector2 GetCollisionNormal(eduRigidBody body, eduRigidBody other)
+    {
+        Vector2 collisionNormal;
+        if(other.GetComponent<eduWallCollider>() != null)
+        {
+            return other.GetComponent<eduWallCollider>().normal;
+        }
+
+        Vector2 distanceVector = other.transform.position - body.transform.position;
+        collisionNormal = distanceVector.normalized;
+
+        return collisionNormal;
     }
 }
