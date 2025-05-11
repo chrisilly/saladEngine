@@ -377,7 +377,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &115952045
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -886,7 +886,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1491524833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -917,7 +917,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: {x: 10, y: 10}
+  velocity: {x: 0, y: 0}
   angularVelocity: 8
   maxAngularVelocity: 8
   mass: 1
@@ -1101,7 +1101,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1163,7 +1163,7 @@ MonoBehaviour:
   applyWind: 0
   buoyancyForce: {x: 0, y: 0}
   fluidDensity: 997
-  waterLevel: -10
+  waterLevel: 0
   applyBuoyancy: 1
   submergedVolume: 0
 --- !u!1 &1591327240

@@ -53,7 +53,7 @@ public class eduForces : MonoBehaviour
             float buoyancyMagnitude = fluidDensity * Mathf.Abs(gravity);
             //density * gravity;
             rigidBody.submergedHeight = Math.Clamp(waterLevel - (rigidBody.transform.position.y - rigidBody.GetComponentInParent<eduCircleCollider>().radius), 0.0f, 2 * rigidBody.GetComponentInParent<eduCircleCollider>().radius);
-
+            Debug.Log($"SubmergedHeight: {rigidBody.submergedHeight}");
             //Figure out the submerged height of the object 
             //Since we're trying to find the submerged volume of the object, we clamp between 0 (none of the object is submerged) and the diameter (the whole object is submerged)
 
@@ -75,6 +75,7 @@ public class eduForces : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.DrawLine(new Vector3(-100, waterLevel, 0), new Vector3(100, waterLevel, 0));
         //Draw lines for forces and trajectories
         //Change execution order settings so this runs before eduRigidBody.Update()
     }

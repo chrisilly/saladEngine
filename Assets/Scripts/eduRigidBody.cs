@@ -90,17 +90,14 @@ public class eduRigidBody : MonoBehaviour
 
         //Text below only works for when the water level is below the center point of the circle
         //otherwise mathematically (despite not functionally) incorrect
+
         y = radius - submergedHeight;
         float angle = Mathf.Acos(y / radius);
         float chordLength = 2 * Mathf.Sqrt((radius * radius) - (y * y));
         float sectorArea = area * (2 * angle / (2 * Mathf.PI));
-        float segmentArea = sectorArea - (chordLength * y)/2;
-        
+        float segmentArea = sectorArea - (chordLength * y) / 2;
         Debug.Log($"y {y}, angle {angle}, chord {chordLength}, sector {sectorArea}, segment {segmentArea}");
-
         return segmentArea;
-
-        
     }
 
     /// <summary>
