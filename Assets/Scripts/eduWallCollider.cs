@@ -15,8 +15,8 @@ public class eduWallCollider : MonoBehaviour, eduCollider
     public Vector3 startPosition { get { return new Vector3(transform.position.x - (float)Math.Cos(angle)*length, transform.position.y - (float)Math.Sin(angle)*length); } }
     public Vector3 endPosition { get { return new Vector3(transform.position.x - (float)Math.Cos(angle + Math.PI)*length, transform.position.y - (float)Math.Sin(angle + Math.PI)*length); } }
     public Vector3 vector { get { return startPosition-endPosition; } }
-    public Vector3 normal { get { return transform.position + transform.position + new Vector3(vector.y, -vector.x); } }
-    [Range((float)-Math.PI/2, (float)Math.PI/2)] public float angle = 0.0f;
+    public Vector3 normal { get { return new Vector3(vector.y, -vector.x).normalized; } }
+    [Range(0.0f, (float)Math.PI*2.0f)] public float angle = 0.0f;
     [NonSerialized] public float radius = 0.0f; // wall thickness
 
     void Start()
@@ -53,8 +53,9 @@ public class eduWallCollider : MonoBehaviour, eduCollider
     {
         Gizmos.color = debug;
 
-        Vector3 endPosition = transform.position + new Vector3(line.y, -line.x);
+        Vector3 endPosition = transform.position - normal;
         Gizmos.DrawLine(transform.position, endPosition);
+        // Gizmos.DrawLine(Vector3.zero, normal);
     }
 
     public void OnCollide()

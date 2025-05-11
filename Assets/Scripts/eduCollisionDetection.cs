@@ -1,72 +1,11 @@
-using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.Assertions;
-using Unity.Mathematics;
 
 public interface eduCollider
 {
     void OnCollide();
-}
-
-public class Contact
-{
-    eduRigidBody body;
-    eduRigidBody other;
-    Vector3 collisionNormal; // body->other
-    float penetration;
-
-    public Contact()
-    {
-
-    }
-
-    public Contact(eduRigidBody body, eduRigidBody other, Vector3 collisionNormal, float penetration)
-    {
-        this.body = body;
-        this.other = other;
-        this.collisionNormal = collisionNormal;
-        this.penetration = penetration;
-    }
-
-    public void Solve()
-    {
-        Assert.IsTrue(circleWall(body, other) || circleCircle(body, other));
-        
-        Vector2 impulse = ((body.mass * other.mass) / (body.mass + other.mass)) * (1 + body.restitution) * (other.GetVelocity() - body.GetVelocity()) * collisionNormal;
-
-        //Apply Impulses
-        body.applyImpulse(impulse, collisionNormal);
-        other.applyImpulse(-impulse, collisionNormal);
-
-        //Overlap Correction
-        float errorReduction = 0.8f;
-        float Pn = errorReduction * (body.mass * other.mass/(body.mass + other.mass)) * penetration;
-        CorrectOverlap(body, -Pn);
-        CorrectOverlap(other, Pn);
-    }
-
-    bool circleWall(eduRigidBody body, eduRigidBody other)
-    {
-        bool oneCircle = body.GetComponent<eduCircleCollider>() != null || other.GetComponent<eduCircleCollider>() != null;
-        bool oneWall = body.GetComponent<eduWallCollider>() != null || other.GetComponent<eduWallCollider>() != null;
-
-        return oneCircle && oneWall;
-    }
-
-    bool circleCircle(eduRigidBody body, eduRigidBody other)
-    {
-        bool bodyIsCircle = body.GetComponent<eduCircleCollider>() != null;
-        bool otherIsCircle = other.GetComponent<eduCircleCollider>() != null;
-
-        return bodyIsCircle && otherIsCircle;
-    }
-
-    void CorrectOverlap(eduRigidBody body, float Pn)
-    {
-        body.transform.position += (Pn/body.mass) * collisionNormal;
-    }
 }
 
 public class eduCollisionDetection : MonoBehaviour
@@ -99,17 +38,9 @@ public class eduCollisionDetection : MonoBehaviour
 
     bool CircleWallCollision(eduCircleCollider circle, eduWallCollider wall)
     {
-        bool collision = false;
-        // bool horizontalCollision = circle.transform.position.x - wall.transform.position.x <= circle.radius;
-        // bool verticalCollision = circle.transform.position.y - wall.transform.position.y <= circle.radius;
+        if(CircleWallDistance(circle, wall) <= circle.radius) return true;
 
-        if(wall.isHorizontal()) 
-            collision = Math.Abs(circle.transform.position.y - wall.transform.position.y) <= circle.radius;
-
-        if(wall.isVertical())
-            collision = Math.Abs(circle.transform.position.x - wall.transform.position.x) <= circle.radius;
-
-        return collision;
+        return false;
     }
     
     bool CircleCollision(eduCircleCollider circle, eduCircleCollider other)
@@ -145,11 +76,9 @@ public class eduCollisionDetection : MonoBehaviour
 
             if(!MovingApart(circleBody, wallBody)) continue;
 
-            Vector2 distanceVector = wall.transform.position - circleBody.transform.position;
-            Vector2 collisionNormal = distanceVector.normalized;
-            float penetration = circle.radius + wall.radius - distanceVector.magnitude;
+            float penetration = circle.radius - CircleWallDistance(circle, wall);
 
-            Contact contact = new Contact(circleBody, wallBody, collisionNormal, penetration);
+            Contact contact = new(circleBody, wallBody, wall.normal, penetration);
             contact.Solve();
         }
     }
@@ -171,7 +100,7 @@ public class eduCollisionDetection : MonoBehaviour
             Vector2 collisionNormal = distanceVector.normalized;
             float penetration = circle.radius + other.radius - distanceVector.magnitude;
 
-            Contact contact = new Contact(circleBody, otherBody, collisionNormal, penetration);
+            Contact contact = new(circleBody, otherBody, collisionNormal, penetration);
             contact.Solve();
         }
     }
@@ -183,5 +112,15 @@ public class eduCollisionDetection : MonoBehaviour
         float distance = Math.Abs(distanceVector.magnitude);
 
         return relativeMovement.magnitude * distance > 0;
+    }
+
+    float CircleWallDistance(eduCircleCollider circle, eduWallCollider wall)
+    {
+        // Line defined defined by point and angle formula (https://en.wikipedia.org/wiki/Distance_from_a_point_to_a_line#:~:text=the%20opposite%20vertex.-,Line%20defined%20by%20point%20and%20angle,-%5Bedit%5D)
+        float distance =    (float)(
+                                Math.Cos(wall.angle) * (wall.transform.position.y - circle.transform.position.y)
+                                - Math.Sin(wall.angle) * (wall.transform.position.x - circle.transform.position.x));
+
+        return distance;
     }
 }

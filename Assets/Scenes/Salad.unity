@@ -153,7 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   draw: 0
   radius: 1
-  density: 250
+  density: 50
   mass: 0
   momentOfInertia: 0
   rigidBody: {fileID: 318445233}
@@ -353,7 +353,7 @@ Transform:
   m_GameObject: {fileID: 318445231}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.88, y: -3.25, z: 0}
+  m_LocalPosition: {x: -5.12, y: 1.65, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -371,7 +371,7 @@ GameObject:
   - component: {fileID: 344049298}
   - component: {fileID: 344049297}
   m_Layer: 0
-  m_Name: Wall
+  m_Name: WesternBound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -386,7 +386,7 @@ Transform:
   m_GameObject: {fileID: 344049295}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.65, y: -2.99, z: 0}
+  m_LocalPosition: {x: -22.42, y: 9.66, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -410,7 +410,7 @@ MonoBehaviour:
   maxAngularVelocity: 0
   gravityMultiplier: 0
   gravityDirection: {x: 0, y: -1}
-  mass: 1000000
+  mass: 100
   momentOfInertia: 0
   maxMomentOfInertia: 0
   Forces: {x: 0, y: 0}
@@ -431,9 +431,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wallType: 3
   draw: 1
-  length: 3
+  length: 19.29
   color: {r: 1, g: 0, b: 0, a: 1}
-  angle: 0
+  debug: {r: 0, g: 1, b: 0, a: 1}
+  angle: 0.79
 --- !u!1 &365530191
 GameObject:
   m_ObjectHideFlags: 0
@@ -468,7 +469,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   draw: 0
   radius: 1
-  density: 250
+  density: 50
   mass: 0
   momentOfInertia: 0
   rigidBody: {fileID: 365530193}
@@ -708,7 +709,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   draw: 0
   radius: 1
-  density: 250
+  density: 135
   mass: 0
   momentOfInertia: 0
   rigidBody: {fileID: 421334716}
@@ -908,87 +909,12 @@ Transform:
   m_GameObject: {fileID: 421334714}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.56, y: 0.31, z: 0}
+  m_LocalPosition: {x: -12.69, y: 2.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &509326408
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 509326409}
-  - component: {fileID: 509326411}
-  - component: {fileID: 509326410}
-  m_Layer: 0
-  m_Name: Top
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &509326409
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 509326408}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 9.55, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1684749749}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &509326410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 509326408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  immovable: 0
-  velocity: {x: 0, y: 0}
-  angularVelocity: 0
-  maxAngularVelocity: 0
-  gravityMultiplier: 0
-  gravityDirection: {x: 0, y: -1}
-  mass: 1000000
-  momentOfInertia: 0
-  maxMomentOfInertia: 0
-  Forces: {x: 0, y: 0}
-  Torques: 0
-  restitution: 1
-  skipFrames: 0
---- !u!114 &509326411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 509326408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9944b63235a7c33419fc1322cfee5969, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wallType: 3
-  draw: 1
-  length: 20
-  color: {r: 1, g: 0, b: 0, a: 1}
-  angle: 0
 --- !u!1 &785650889
 GameObject:
   m_ObjectHideFlags: 0
@@ -1256,7 +1182,7 @@ Transform:
   m_GameObject: {fileID: 803625612}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 21.605505, y: 0, z: 0}
+  m_LocalPosition: {x: 13.8, y: -2.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1274,13 +1200,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  immovable: 0
+  immovable: 1
   velocity: {x: 0, y: 0}
   angularVelocity: 0
   maxAngularVelocity: 0
   gravityMultiplier: 0
   gravityDirection: {x: 0, y: -1}
-  mass: 1000000
+  mass: 10000
   momentOfInertia: 0
   maxMomentOfInertia: 0
   Forces: {x: 0, y: 0}
@@ -1301,9 +1227,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wallType: 1
   draw: 1
-  length: 11.55
+  length: 3.5
   color: {r: 1, g: 0, b: 0, a: 1}
-  angle: 0
+  debug: {r: 0, g: 1, b: 0, a: 1}
+  angle: 4
 --- !u!1 &981261818
 GameObject:
   m_ObjectHideFlags: 0
@@ -1338,7 +1265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   draw: 0
   radius: 1
-  density: 250
+  density: 140
   mass: 0
   momentOfInertia: 0
   rigidBody: {fileID: 981261820}
@@ -1538,7 +1465,7 @@ Transform:
   m_GameObject: {fileID: 981261818}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.09, y: -2.55, z: 0}
+  m_LocalPosition: {x: -10.27, y: 2.56, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1571,7 +1498,7 @@ Transform:
   m_GameObject: {fileID: 1307670126}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -21.794495, y: 0, z: 0}
+  m_LocalPosition: {x: -14.51, y: -2.34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1589,13 +1516,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  immovable: 0
+  immovable: 1
   velocity: {x: 0, y: 0}
   angularVelocity: 0
   maxAngularVelocity: 0
   gravityMultiplier: 0
   gravityDirection: {x: 0, y: -1}
-  mass: 1000000
+  mass: 10000
   momentOfInertia: 0
   maxMomentOfInertia: 0
   Forces: {x: 0, y: 0}
@@ -1616,9 +1543,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wallType: 0
   draw: 1
-  length: 9
+  length: 3.5
   color: {r: 1, g: 0, b: 0, a: 1}
-  angle: 0
+  debug: {r: 0, g: 1, b: 0, a: 1}
+  angle: 2.22
 --- !u!1 &1442326665
 GameObject:
   m_ObjectHideFlags: 0
@@ -1653,7 +1581,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   draw: 0
   radius: 1
-  density: 250
+  density: 300
   mass: 0
   momentOfInertia: 0
   rigidBody: {fileID: 1442326667}
@@ -1984,8 +1912,8 @@ Transform:
   - {fileID: 2001771212}
   - {fileID: 803625613}
   - {fileID: 1307670127}
-  - {fileID: 509326409}
   - {fileID: 344049296}
+  - {fileID: 1790021739}
   m_Father: {fileID: 1646272130}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1691363474
@@ -2058,6 +1986,82 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4790aac7ff0f84a419adf2183ff53049, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1790021738
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1790021739}
+  - component: {fileID: 1790021741}
+  - component: {fileID: 1790021740}
+  m_Layer: 0
+  m_Name: EasternBound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1790021739
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1790021738}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 22.3, y: 9.8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1684749749}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1790021740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1790021738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  immovable: 0
+  velocity: {x: 0, y: 0}
+  angularVelocity: 0
+  maxAngularVelocity: 0
+  gravityMultiplier: 0
+  gravityDirection: {x: 0, y: -1}
+  mass: 100
+  momentOfInertia: 0
+  maxMomentOfInertia: 0
+  Forces: {x: 0, y: 0}
+  Torques: 0
+  restitution: 1
+  skipFrames: 0
+--- !u!114 &1790021741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1790021738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9944b63235a7c33419fc1322cfee5969, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wallType: 3
+  draw: 1
+  length: 19.29
+  color: {r: 1, g: 0, b: 0, a: 1}
+  debug: {r: 0, g: 1, b: 0, a: 1}
+  angle: 5.52
 --- !u!1 &2001771211
 GameObject:
   m_ObjectHideFlags: 0
@@ -2085,7 +2089,7 @@ Transform:
   m_GameObject: {fileID: 2001771211}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -10, z: 0}
+  m_LocalPosition: {x: 0, y: -8.34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2105,9 +2109,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wallType: 2
   draw: 1
-  length: 1
+  length: 22.9
   color: {r: 1, g: 0, b: 0, a: 1}
-  angle: 0
+  debug: {r: 0, g: 1, b: 0, a: 1}
+  angle: 3.1415
 --- !u!114 &2001771214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2120,13 +2125,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  immovable: 0
+  immovable: 1
   velocity: {x: 0, y: 0}
   angularVelocity: 0
   maxAngularVelocity: 0
   gravityMultiplier: 0
   gravityDirection: {x: 0, y: -1}
-  mass: 1000000
+  mass: 10000
   momentOfInertia: 0
   maxMomentOfInertia: 0
   Forces: {x: 0, y: 0}
