@@ -20,7 +20,8 @@ public class Contact
         this.collisionNormal = collisionNormal;
         this.penetration = penetration;
 
-        Debug.Log($"Contact registered between {body} and {other}. Solving.");
+        // Debug.Log($"Contact registered between {body} and {other}. Solving.");
+        Debug.DrawLine(body.transform.position, body.transform.position - collisionNormal, Color.white);
     }
 
     public void Solve()
