@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class eduRigidBody : MonoBehaviour 
 {
+    [SerializeField] public bool immovable = false;
+
     [SerializeField] Vector2 velocity = Vector2.zero;
     [SerializeField] float angularVelocity = 0;
     [SerializeField] float maxAngularVelocity = 0;
@@ -26,6 +28,8 @@ public class eduRigidBody : MonoBehaviour
 
     void FixedUpdate()
     {
+        if(immovable) return;
+
         if(frameCounter < skipFrames)
         {
             Forces = Vector2.zero;
@@ -85,9 +89,6 @@ public class eduRigidBody : MonoBehaviour
         Torques += torque;
     }
 
-    /// <summary>
-    /// We don't use this because it's listed as an optional method in the assignment doc
-    /// </summary>
     public void applyImpulse(Vector2 impulse, Vector2 normal) 
     {
         velocity += (impulse/mass) * normal;
