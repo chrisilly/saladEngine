@@ -180,7 +180,7 @@ MonoBehaviour:
   maxMomentOfInertia: 0
   Forces: {x: 0, y: 0}
   Torques: 0
-  restitution: 0.1
+  restitution: 0.8
   skipFrames: 0
 --- !u!96 &318445234
 TrailRenderer:
@@ -496,7 +496,7 @@ MonoBehaviour:
   maxMomentOfInertia: 0
   Forces: {x: 0, y: 0}
   Torques: 0
-  restitution: 0.1
+  restitution: 0.8
   skipFrames: 0
 --- !u!96 &365530194
 TrailRenderer:
@@ -736,7 +736,7 @@ MonoBehaviour:
   maxMomentOfInertia: 0
   Forces: {x: 0, y: 0}
   Torques: 0
-  restitution: 0.1
+  restitution: 0.8
   skipFrames: 3
 --- !u!96 &421334717
 TrailRenderer:
@@ -976,7 +976,7 @@ MonoBehaviour:
   maxMomentOfInertia: 0
   Forces: {x: 0, y: 0}
   Torques: 0
-  restitution: 0.1
+  restitution: 0.8
   skipFrames: 0
 --- !u!96 &785650892
 TrailRenderer:
@@ -1292,7 +1292,7 @@ MonoBehaviour:
   maxMomentOfInertia: 0
   Forces: {x: 0, y: 0}
   Torques: 0
-  restitution: 0.1
+  restitution: 0.8
   skipFrames: 6
 --- !u!96 &981261821
 TrailRenderer:
@@ -1608,7 +1608,7 @@ MonoBehaviour:
   maxMomentOfInertia: 0
   Forces: {x: 0, y: 0}
   Torques: 0
-  restitution: 0.1
+  restitution: 0.8
   skipFrames: 0
 --- !u!96 &1442326668
 TrailRenderer:
