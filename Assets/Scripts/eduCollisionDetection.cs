@@ -36,26 +36,6 @@ public class eduCollisionDetection : MonoBehaviour
         UpdateCollisions();
     }
 
-    bool CircleWallCollision(eduCircleCollider circle, eduWallCollider wall)
-    {
-        if(CircleWallDistance(circle, wall) <= circle.radius) return true;
-
-        return false;
-    }
-    
-    bool CircleCollision(eduCircleCollider circle, eduCircleCollider other)
-    {
-        Assert.AreNotEqual(circle, other); // if we pass the same circle colliders in both parameters, we have failed...
-
-        Vector2 distanceVector = circle.transform.position - other.transform.position;
-        float distance = Math.Abs(distanceVector.magnitude);
-        // float distance = Vector2.Distance(circle.transform.position, other.transform.position);
-
-        bool collision = distance <= circle.radius + other.radius;
-
-        return collision;
-    }
-
     void UpdateCollisions()
     {
         foreach(eduCircleCollider circle in circles)
@@ -78,7 +58,7 @@ public class eduCollisionDetection : MonoBehaviour
 
             float penetration = circle.radius - CircleWallDistance(circle, wall);
 
-            Contact contact = new(circleBody, wallBody, wall.normal, penetration);
+            Contact contact = new(circleBody, wallBody, GetCollisionNormal(circleBody, wallBody), penetration);
             contact.Solve();
         }
     }
@@ -96,13 +76,32 @@ public class eduCollisionDetection : MonoBehaviour
 
             if(MovingApart(circleBody, otherBody)) continue;
 
-            Vector2 distanceVector = other.transform.position - circleBody.transform.position;
-            Vector2 collisionNormal = distanceVector.normalized;
-            float penetration = circle.radius + other.radius - distanceVector.magnitude;
+            float distance = Vector2.Distance(other.transform.position, circle.transform.position);
+            float penetration = circle.radius + other.radius - distance;
 
-            Contact contact = new(circleBody, otherBody, collisionNormal, penetration);
+            Contact contact = new(circleBody, otherBody, GetCollisionNormal(circleBody, otherBody), penetration);
             contact.Solve();
         }
+    }
+
+    bool CircleWallCollision(eduCircleCollider circle, eduWallCollider wall)
+    {
+        if(CircleWallDistance(circle, wall) <= circle.radius) return true;
+
+        return false;
+    }
+    
+    bool CircleCollision(eduCircleCollider circle, eduCircleCollider other)
+    {
+        Assert.AreNotEqual(circle, other); // if we pass the same circle colliders in both parameters, we have failed...
+
+        Vector2 distanceVector = circle.transform.position - other.transform.position;
+        float distance = Math.Abs(distanceVector.magnitude);
+        // float distance = Vector2.Distance(circle.transform.position, other.transform.position);
+
+        bool collision = distance <= circle.radius + other.radius;
+
+        return collision;
     }
 
     bool MovingApart(eduRigidBody body, eduRigidBody other)
@@ -110,19 +109,14 @@ public class eduCollisionDetection : MonoBehaviour
         Vector2 relativeVelocity = other.GetVelocity() - body.GetVelocity();
         float velocityAlongNormal = Vector2.Dot(relativeVelocity, GetCollisionNormal(body, other));
         return velocityAlongNormal > 0;
-
-        Vector2 distanceVector = body.transform.position - other.transform.position;
-        float distance = Math.Abs(distanceVector.magnitude);
-
-        return relativeVelocity.magnitude * distance > 0;
     }
 
     float CircleWallDistance(eduCircleCollider circle, eduWallCollider wall)
     {
         // Line defined defined by point and angle formula (https://en.wikipedia.org/wiki/Distance_from_a_point_to_a_line#:~:text=the%20opposite%20vertex.-,Line%20defined%20by%20point%20and%20angle,-%5Bedit%5D)
-        float distance =    (float)(
-                                Math.Cos(wall.angle) * (wall.transform.position.y - circle.transform.position.y)
-                                - Math.Sin(wall.angle) * (wall.transform.position.x - circle.transform.position.x));
+        float distance = (float)(
+            Math.Cos(wall.angle) * (wall.transform.position.y - circle.transform.position.y)
+            - Math.Sin(wall.angle) * (wall.transform.position.x - circle.transform.position.x));
 
         return distance;
     }

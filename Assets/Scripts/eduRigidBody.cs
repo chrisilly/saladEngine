@@ -89,9 +89,9 @@ public class eduRigidBody : MonoBehaviour
         Torques += torque;
     }
 
-    public void applyImpulse(Vector2 impulse, Vector2 normal) 
+    public void applyImpulse(Vector2 impulse) 
     {
-        velocity += (impulse/mass) * normal;
+        velocity += (impulse/mass);
     }
 
 }

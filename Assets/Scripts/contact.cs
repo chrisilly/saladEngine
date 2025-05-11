@@ -27,12 +27,15 @@ public class Contact
     public void Solve()
     {
         Assert.IsTrue(CircleWall(body, other) || CircleCircle(body, other));
+
+        Vector2 relativeVelocity = other.GetVelocity() - body.GetVelocity();
+        float velocityAlongNormal = Vector2.Dot(relativeVelocity, collisionNormal);
         
-        Vector2 impulse = ((body.mass * other.mass) / (body.mass + other.mass)) * (1 + body.restitution) * (other.GetVelocity() - body.GetVelocity()) * collisionNormal;
+        Vector2 impulse = ((body.mass * other.mass) / (body.mass + other.mass)) * (1 + body.restitution) * relativeVelocity * collisionNormal;
 
         //Apply Impulses
-        body.applyImpulse(impulse, collisionNormal);
-        other.applyImpulse(-impulse, collisionNormal);
+        body.applyImpulse(-impulse);
+        other.applyImpulse(impulse);
 
         //Overlap Correction
         float errorReduction = 0.8f;
