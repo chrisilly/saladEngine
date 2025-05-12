@@ -34,8 +34,8 @@ public class Contact
         Vector2 impulse = ((body.mass * other.mass) / (body.mass + other.mass)) * (1 + body.restitution) * relativeVelocity * collisionNormal;
 
         //Apply Impulses
-        body.applyImpulse(-impulse);
-        other.applyImpulse(impulse);
+        body.applyImpulse(impulse * collisionNormal);
+        other.applyImpulse(-impulse * collisionNormal);
 
         //Overlap Correction
         float errorReduction = 0.8f;

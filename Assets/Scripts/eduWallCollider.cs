@@ -16,7 +16,8 @@ public class eduWallCollider : MonoBehaviour, eduCollider
     public Vector3 endPosition { get { return new Vector3(transform.position.x - (float)Math.Cos(angle + Math.PI)*length, transform.position.y - (float)Math.Sin(angle + Math.PI)*length); } }
     public Vector3 vector { get { return startPosition-endPosition; } }
     public Vector3 normal { get { return new Vector3(vector.y, -vector.x).normalized; } }
-    [Range(0.0f, (float)Math.PI*2.0f)] public float angle = 0.0f;
+    public float angle { get { return degrees * (float)Math.PI/180; } set { degrees = value * 180/(float)Math.PI; } }
+    [Range(0.0f, 360.0f)] public float degrees = 0.0f;
     [NonSerialized] public float radius = 0.0f; // wall thickness
 
     void Start()
