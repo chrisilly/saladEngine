@@ -20,7 +20,8 @@ public class eduForces : MonoBehaviour
     public float angularDragCoefficient = 0f;
     public bool applyAngularDrag = false; 
 
-    public float windForce = 0f;
+    public float windMagnitude = 0f;
+    public Vector2 windDirection = Vector2.zero;
     public bool applyWind = false;
     
     public Vector2 buoyancyForce = new Vector2(0,0);
@@ -49,6 +50,7 @@ public class eduForces : MonoBehaviour
             rigidBody.applyForce(gravityForce); // Apply gravity to each rigid body, activate and deactivate with a bool. Alternatively use Convert.ToInt32(applyGravity)
             rigidBody.applyTorque(Torques);     // Apply torque to each rigid body
             rigidBody.applyForce(BuoyancyForce(rigidBody)); //Apply buoyancy to each rigid body
+            rigidBody.applyForce(FindWindForce());
         }
     }
     // Update is called once per frame
@@ -73,5 +75,12 @@ public class eduForces : MonoBehaviour
 
         buoyancyForce.y = buoyancyMagnitude * rigidBody.submergedVolume * (applied = applyBuoyancy ? 1 : 0);
         return buoyancyForce;
+    }
+
+    public Vector2 FindWindForce()
+    {
+        Vector2 windForce = windDirection.normalized * windMagnitude * (applied = applyWind ? 1:0);
+        Debug.Log($"Wind force: {windForce}");
+        return windForce;
     }
 }

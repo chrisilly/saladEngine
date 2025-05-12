@@ -354,6 +354,7 @@ MonoBehaviour:
   maxMomentOfInertia: 0
   area: 0
   submergedHeight: 0
+  submergedVolume: 0
   Forces: {x: 0, y: 0}
   Torques: 0
   restitution: 0.8
@@ -585,7 +586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: {x: 0, y: 0}
+  velocity: {x: 10, y: 0}
   angularVelocity: 8
   maxAngularVelocity: 8
   mass: 1
@@ -593,6 +594,7 @@ MonoBehaviour:
   maxMomentOfInertia: 0
   area: 0
   submergedHeight: 0
+  submergedVolume: 0
   Forces: {x: 0, y: 0}
   Torques: 0
   restitution: 0.8
@@ -686,6 +688,7 @@ MonoBehaviour:
   maxMomentOfInertia: 0
   area: 0
   submergedHeight: 0
+  submergedVolume: 0
   Forces: {x: 0, y: 0}
   Torques: 0
   restitution: 0.8
@@ -925,6 +928,7 @@ MonoBehaviour:
   maxMomentOfInertia: 0
   area: 0
   submergedHeight: 0
+  submergedVolume: 0
   Forces: {x: 0, y: 0}
   Torques: 0
   restitution: 0.8
@@ -1151,7 +1155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravity: -9.81
-  applyGravity: 1
+  applyGravity: 0
   gravityDirection: {x: 0, y: -1}
   linearDragCoefficient: 0
   applyLinearDrag: 0
@@ -1159,12 +1163,13 @@ MonoBehaviour:
   applyTorque: 0
   angularDragCoefficient: 0
   applyAngularDrag: 0
-  windForce: 0
-  applyWind: 0
+  windMagnitude: 100
+  windDirection: {x: -10, y: 0}
+  applyWind: 1
   buoyancyForce: {x: 0, y: 0}
   fluidDensity: 997
   waterLevel: 0
-  applyBuoyancy: 1
+  applyBuoyancy: 0
   submergedVolume: 0
 --- !u!1 &1591327240
 GameObject:
@@ -1224,6 +1229,7 @@ MonoBehaviour:
   maxMomentOfInertia: 0
   area: 0
   submergedHeight: 0
+  submergedVolume: 0
   Forces: {x: 0, y: 0}
   Torques: 0
   restitution: 0.8
@@ -1732,6 +1738,7 @@ MonoBehaviour:
   maxMomentOfInertia: 0
   area: 0
   submergedHeight: 0
+  submergedVolume: 0
   Forces: {x: 0, y: 0}
   Torques: 0
   restitution: 0.8
