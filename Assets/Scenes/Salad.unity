@@ -151,9 +151,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5610cbb2be96c544f84fbf30a9837a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  draw: 0
   radius: 1
   density: 50
+  area: 0
   mass: 0
   momentOfInertia: 0
   rigidBody: {fileID: 318445233}
@@ -169,15 +169,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  immovable: 0
   velocity: {x: 0, y: 0}
   angularVelocity: 8
   maxAngularVelocity: 8
-  gravityMultiplier: 1
-  gravityDirection: {x: 0, y: -1}
   mass: 1
   momentOfInertia: 0
   maxMomentOfInertia: 0
+  area: 0
+  submergedHeight: 0
   Forces: {x: 0, y: 0}
   Torques: 0
   restitution: 0.8
@@ -404,15 +403,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  immovable: 0
   velocity: {x: 0, y: 0}
   angularVelocity: 0
   maxAngularVelocity: 0
-  gravityMultiplier: 0
-  gravityDirection: {x: 0, y: -1}
   mass: 100
   momentOfInertia: 0
   maxMomentOfInertia: 0
+  area: 0
+  submergedHeight: 0
   Forces: {x: 0, y: 0}
   Torques: 0
   restitution: 1
@@ -432,8 +430,16 @@ MonoBehaviour:
   wallType: 3
   draw: 1
   length: 19.29
-  color: {r: 1, g: 0, b: 0, a: 1}
-  debug: {r: 0, g: 1, b: 0, a: 1}
+  color:
+    r: 1
+    g: 0
+    b: 0
+    a: 1
+  debug:
+    r: 0
+    g: 1
+    b: 0
+    a: 1
   angle: 0.79
 --- !u!1 &365530191
 GameObject:
@@ -467,9 +473,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5610cbb2be96c544f84fbf30a9837a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  draw: 0
   radius: 1
   density: 50
+  area: 0
   mass: 0
   momentOfInertia: 0
   rigidBody: {fileID: 365530193}
@@ -485,15 +491,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  immovable: 0
   velocity: {x: 0, y: 0}
   angularVelocity: 8
   maxAngularVelocity: 8
-  gravityMultiplier: 1
-  gravityDirection: {x: 0, y: -1}
   mass: 1
   momentOfInertia: 0
   maxMomentOfInertia: 0
+  area: 0
+  submergedHeight: 0
   Forces: {x: 0, y: 0}
   Torques: 0
   restitution: 0.8
@@ -707,9 +712,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5610cbb2be96c544f84fbf30a9837a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  draw: 0
   radius: 1
   density: 135
+  area: 0
   mass: 0
   momentOfInertia: 0
   rigidBody: {fileID: 421334716}
@@ -725,15 +730,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  immovable: 0
-  velocity: {x: 0, y: 0}
+  velocity: {x: -1, y: 0}
   angularVelocity: 8
   maxAngularVelocity: 8
-  gravityMultiplier: 1
-  gravityDirection: {x: 0, y: -1}
   mass: 1
   momentOfInertia: 0
   maxMomentOfInertia: 0
+  area: 0
+  submergedHeight: 0
   Forces: {x: 0, y: 0}
   Torques: 0
   restitution: 0.8
@@ -947,9 +951,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5610cbb2be96c544f84fbf30a9837a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  draw: 0
   radius: 1
   density: 250
+  area: 0
   mass: 0
   momentOfInertia: 0
   rigidBody: {fileID: 785650891}
@@ -965,15 +969,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  immovable: 0
   velocity: {x: 0, y: 0}
   angularVelocity: 8
   maxAngularVelocity: 8
-  gravityMultiplier: 1
-  gravityDirection: {x: 0, y: -1}
   mass: 1
   momentOfInertia: 0
   maxMomentOfInertia: 0
+  area: 0
+  submergedHeight: 0
   Forces: {x: 0, y: 0}
   Torques: 0
   restitution: 0.8
@@ -1200,15 +1203,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  immovable: 1
   velocity: {x: 0, y: 0}
   angularVelocity: 0
   maxAngularVelocity: 0
-  gravityMultiplier: 0
-  gravityDirection: {x: 0, y: -1}
   mass: 10000
   momentOfInertia: 0
   maxMomentOfInertia: 0
+  area: 0
+  submergedHeight: 0
   Forces: {x: 0, y: 0}
   Torques: 0
   restitution: 1
@@ -1228,8 +1230,16 @@ MonoBehaviour:
   wallType: 1
   draw: 1
   length: 3.5
-  color: {r: 1, g: 0, b: 0, a: 1}
-  debug: {r: 0, g: 1, b: 0, a: 1}
+  color:
+    r: 1
+    g: 0
+    b: 0
+    a: 1
+  debug:
+    r: 0
+    g: 1
+    b: 0
+    a: 1
   angle: 4
 --- !u!1 &981261818
 GameObject:
@@ -1263,9 +1273,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5610cbb2be96c544f84fbf30a9837a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  draw: 0
   radius: 1
   density: 140
+  area: 0
   mass: 0
   momentOfInertia: 0
   rigidBody: {fileID: 981261820}
@@ -1281,15 +1291,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  immovable: 0
   velocity: {x: 0, y: 0}
   angularVelocity: 8
   maxAngularVelocity: 8
-  gravityMultiplier: 1
-  gravityDirection: {x: 0, y: -1}
   mass: 1
   momentOfInertia: 0
   maxMomentOfInertia: 0
+  area: 0
+  submergedHeight: 0
   Forces: {x: 0, y: 0}
   Torques: 0
   restitution: 0.8
@@ -1516,15 +1525,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  immovable: 1
-  velocity: {x: 0, y: 0}
+  velocity: {x: -1, y: 0}
   angularVelocity: 0
   maxAngularVelocity: 0
-  gravityMultiplier: 0
-  gravityDirection: {x: 0, y: -1}
   mass: 10000
   momentOfInertia: 0
   maxMomentOfInertia: 0
+  area: 0
+  submergedHeight: 0
   Forces: {x: 0, y: 0}
   Torques: 0
   restitution: 1
@@ -1544,8 +1552,16 @@ MonoBehaviour:
   wallType: 0
   draw: 1
   length: 3.5
-  color: {r: 1, g: 0, b: 0, a: 1}
-  debug: {r: 0, g: 1, b: 0, a: 1}
+  color:
+    r: 1
+    g: 0
+    b: 0
+    a: 1
+  debug:
+    r: 0
+    g: 1
+    b: 0
+    a: 1
   angle: 2.22
 --- !u!1 &1442326665
 GameObject:
@@ -1579,9 +1595,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5610cbb2be96c544f84fbf30a9837a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  draw: 0
   radius: 1
   density: 300
+  area: 0
   mass: 0
   momentOfInertia: 0
   rigidBody: {fileID: 1442326667}
@@ -1597,15 +1613,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  immovable: 0
   velocity: {x: 0, y: 0}
   angularVelocity: 8
   maxAngularVelocity: 8
-  gravityMultiplier: 1
-  gravityDirection: {x: 0, y: -1}
   mass: 1
   momentOfInertia: 0
   maxMomentOfInertia: 0
+  area: 0
+  submergedHeight: 0
   Forces: {x: 0, y: 0}
   Torques: 0
   restitution: 0.8
@@ -1948,6 +1963,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravity: -9.81
   applyGravity: 1
+  gravityDirection: {x: 0, y: -1}
   linearDragCoefficient: 0
   applyLinearDrag: 0
   torque: -150
@@ -1956,9 +1972,11 @@ MonoBehaviour:
   applyAngularDrag: 0
   windForce: 0
   applyWind: 0
+  buoyancyForce: {x: 0, y: 0}
   fluidDensity: 0
   waterLevel: 0
   applyBuoyancy: 0
+  submergedVolume: 0
 --- !u!4 &1691363476
 Transform:
   m_ObjectHideFlags: 0
@@ -1986,6 +2004,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4790aac7ff0f84a419adf2183ff53049, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  walls: []
+  circles: []
 --- !u!1 &1790021738
 GameObject:
   m_ObjectHideFlags: 0
@@ -2031,15 +2051,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  immovable: 0
   velocity: {x: 0, y: 0}
   angularVelocity: 0
   maxAngularVelocity: 0
-  gravityMultiplier: 0
-  gravityDirection: {x: 0, y: -1}
   mass: 100
   momentOfInertia: 0
   maxMomentOfInertia: 0
+  area: 0
+  submergedHeight: 0
   Forces: {x: 0, y: 0}
   Torques: 0
   restitution: 1
@@ -2059,8 +2078,16 @@ MonoBehaviour:
   wallType: 3
   draw: 1
   length: 19.29
-  color: {r: 1, g: 0, b: 0, a: 1}
-  debug: {r: 0, g: 1, b: 0, a: 1}
+  color:
+    r: 1
+    g: 0
+    b: 0
+    a: 1
+  debug:
+    r: 0
+    g: 1
+    b: 0
+    a: 1
   angle: 5.52
 --- !u!1 &2001771211
 GameObject:
@@ -2110,8 +2137,16 @@ MonoBehaviour:
   wallType: 2
   draw: 1
   length: 22.9
-  color: {r: 1, g: 0, b: 0, a: 1}
-  debug: {r: 0, g: 1, b: 0, a: 1}
+  color:
+    r: 1
+    g: 0
+    b: 0
+    a: 1
+  debug:
+    r: 0
+    g: 1
+    b: 0
+    a: 1
   angle: 3.1415
 --- !u!114 &2001771214
 MonoBehaviour:
@@ -2125,15 +2160,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  immovable: 1
   velocity: {x: 0, y: 0}
   angularVelocity: 0
   maxAngularVelocity: 0
-  gravityMultiplier: 0
-  gravityDirection: {x: 0, y: -1}
   mass: 10000
   momentOfInertia: 0
   maxMomentOfInertia: 0
+  area: 0
+  submergedHeight: 0
   Forces: {x: 0, y: 0}
   Torques: 0
   restitution: 1

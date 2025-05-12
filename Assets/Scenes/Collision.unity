@@ -154,6 +154,7 @@ MonoBehaviour:
   draw: 0
   radius: 1
   density: 250
+  area: 0
   mass: 0
   momentOfInertia: 0
   rigidBody: {fileID: 30886594}
@@ -178,6 +179,9 @@ MonoBehaviour:
   mass: 1
   momentOfInertia: 0
   maxMomentOfInertia: 0
+  area: 0
+  submergedHeight: 0
+  submergedVolume: 0
   Forces: {x: 0, y: 0}
   Torques: 0
   restitution: 1
@@ -353,7 +357,7 @@ Transform:
   m_GameObject: {fileID: 30886592}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.6499996, y: 1.05, z: 0}
+  m_LocalPosition: {x: -5.77, y: -0.33, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -394,6 +398,7 @@ MonoBehaviour:
   draw: 0
   radius: 1
   density: 250
+  area: 0
   mass: 0
   momentOfInertia: 0
   rigidBody: {fileID: 160361114}
@@ -418,6 +423,9 @@ MonoBehaviour:
   mass: 1
   momentOfInertia: 0
   maxMomentOfInertia: 0
+  area: 0
+  submergedHeight: 0
+  submergedVolume: 0
   Forces: {x: 0, y: 0}
   Torques: 0
   restitution: 1
@@ -593,7 +601,7 @@ Transform:
   m_GameObject: {fileID: 160361112}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.04, y: 2.1499999, z: 0}
+  m_LocalPosition: {x: -7.26, y: 1.96, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -634,6 +642,7 @@ MonoBehaviour:
   draw: 0
   radius: 1
   density: 250
+  area: 0
   mass: 0
   momentOfInertia: 0
   rigidBody: {fileID: 1428400350}
@@ -658,6 +667,9 @@ MonoBehaviour:
   mass: 1
   momentOfInertia: 0
   maxMomentOfInertia: 0
+  area: 0
+  submergedHeight: 0
+  submergedVolume: 0
   Forces: {x: 0, y: 0}
   Torques: 0
   restitution: 1
@@ -833,7 +845,7 @@ Transform:
   m_GameObject: {fileID: 1428400348}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.6200008, y: 2.11, z: 0}
+  m_LocalPosition: {x: -0.99, y: 1.96, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -874,6 +886,7 @@ MonoBehaviour:
   draw: 0
   radius: 1
   density: 250
+  area: 0
   mass: 0
   momentOfInertia: 0
   rigidBody: {fileID: 1442326667}
@@ -898,6 +911,9 @@ MonoBehaviour:
   mass: 1
   momentOfInertia: 0
   maxMomentOfInertia: 0
+  area: 0
+  submergedHeight: 0
+  submergedVolume: 0
   Forces: {x: 0, y: 0}
   Torques: 0
   restitution: 1
@@ -1073,7 +1089,7 @@ Transform:
   m_GameObject: {fileID: 1442326665}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.79, y: -2.49, z: 0}
+  m_LocalPosition: {x: -1.63, y: -2.6, z: 0}
   m_LocalScale: {x: 1.414, y: 1.414, z: 1.414}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1118,6 +1134,9 @@ MonoBehaviour:
   mass: 10000000
   momentOfInertia: 0
   maxMomentOfInertia: 0
+  area: 0
+  submergedHeight: 0
+  submergedVolume: 0
   Forces: {x: 0, y: 0}
   Torques: 0
   restitution: 1
@@ -1194,6 +1213,9 @@ MonoBehaviour:
   mass: 10000000
   momentOfInertia: 0
   maxMomentOfInertia: 0
+  area: 0
+  submergedHeight: 0
+  submergedVolume: 0
   Forces: {x: 0, y: 0}
   Torques: 0
   restitution: 1
@@ -1361,11 +1383,14 @@ MonoBehaviour:
   applyTorque: 1
   angularDragCoefficient: 0
   applyAngularDrag: 0
-  windForce: 0
+  windMagnitude: 0
+  windDirection: {x: 0, y: 0}
   applyWind: 0
+  buoyancyForce: {x: 0, y: 0}
   fluidDensity: 0
   waterLevel: 0
   applyBuoyancy: 0
+  submergedVolume: 0
 --- !u!4 &1691363476
 Transform:
   m_ObjectHideFlags: 0
@@ -1432,6 +1457,9 @@ MonoBehaviour:
   mass: 10000000
   momentOfInertia: 0
   maxMomentOfInertia: 0
+  area: 0
+  submergedHeight: 0
+  submergedVolume: 0
   Forces: {x: 0, y: 0}
   Torques: 0
   restitution: 1
@@ -1541,6 +1569,9 @@ MonoBehaviour:
   mass: 10000000
   momentOfInertia: 0
   maxMomentOfInertia: 0
+  area: 0
+  submergedHeight: 0
+  submergedVolume: 0
   Forces: {x: 0, y: 0}
   Torques: 0
   restitution: 1
@@ -1580,6 +1611,7 @@ MonoBehaviour:
   draw: 0
   radius: 1
   density: 250
+  area: 0
   mass: 0
   momentOfInertia: 0
   rigidBody: {fileID: 2009252372}
@@ -1604,6 +1636,9 @@ MonoBehaviour:
   mass: 1
   momentOfInertia: 0
   maxMomentOfInertia: 0
+  area: 0
+  submergedHeight: 0
+  submergedVolume: 0
   Forces: {x: 0, y: 0}
   Torques: 0
   restitution: 1
@@ -1779,7 +1814,7 @@ Transform:
   m_GameObject: {fileID: 2009252370}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.9, y: -2.2, z: 0}
+  m_LocalPosition: {x: -3.08, y: -1.31, z: 0}
   m_LocalScale: {x: 1.189, y: 1.189, z: 1.189}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1820,6 +1855,7 @@ MonoBehaviour:
   draw: 0
   radius: 1
   density: 250
+  area: 0
   mass: 0
   momentOfInertia: 0
   rigidBody: {fileID: 2075868931}
@@ -1844,6 +1880,9 @@ MonoBehaviour:
   mass: 1
   momentOfInertia: 0
   maxMomentOfInertia: 0
+  area: 0
+  submergedHeight: 0
+  submergedVolume: 0
   Forces: {x: 0, y: 0}
   Torques: 0
   restitution: 1
@@ -2019,7 +2058,7 @@ Transform:
   m_GameObject: {fileID: 2075868929}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.5299997, y: 1.1999999, z: 0}
+  m_LocalPosition: {x: 4.31, y: -1.94, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

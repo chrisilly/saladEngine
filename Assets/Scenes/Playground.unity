@@ -330,6 +330,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 1
   density: 250
+  area: 0
   mass: 0
   momentOfInertia: 0
   rigidBody: {fileID: 38112742}
@@ -351,6 +352,9 @@ MonoBehaviour:
   mass: 1
   momentOfInertia: 0
   maxMomentOfInertia: 0
+  area: 0
+  submergedHeight: 0
+  submergedVolume: 0
   Forces: {x: 0, y: 0}
   Torques: 0
   restitution: 0.8
@@ -566,6 +570,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 1
   density: 250
+  area: 0
   mass: 0
   momentOfInertia: 0
   rigidBody: {fileID: 115952051}
@@ -581,12 +586,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: {x: 10, y: 10}
+  velocity: {x: 10, y: 0}
   angularVelocity: 8
   maxAngularVelocity: 8
   mass: 1
   momentOfInertia: 0
   maxMomentOfInertia: 0
+  area: 0
+  submergedHeight: 0
+  submergedVolume: 0
   Forces: {x: 0, y: 0}
   Torques: 0
   restitution: 0.8
@@ -641,7 +649,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &992232917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -656,6 +664,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 1
   density: 250
+  area: 0
   mass: 0
   momentOfInertia: 0
   rigidBody: {fileID: 992232918}
@@ -677,6 +686,9 @@ MonoBehaviour:
   mass: 1
   momentOfInertia: 0
   maxMomentOfInertia: 0
+  area: 0
+  submergedHeight: 0
+  submergedVolume: 0
   Forces: {x: 0, y: 0}
   Torques: 0
   restitution: 0.8
@@ -877,7 +889,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1491524833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -892,6 +904,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 1
   density: 250
+  area: 0
   mass: 0
   momentOfInertia: 0
   rigidBody: {fileID: 1491524834}
@@ -907,12 +920,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: {x: 10, y: 10}
+  velocity: {x: 0, y: 0}
   angularVelocity: 8
   maxAngularVelocity: 8
   mass: 1
   momentOfInertia: 0
   maxMomentOfInertia: 0
+  area: 0
+  submergedHeight: 0
+  submergedVolume: 0
   Forces: {x: 0, y: 0}
   Torques: 0
   restitution: 0.8
@@ -1089,7 +1105,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1139,19 +1155,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravity: -9.81
-  applyGravity: 1
+  applyGravity: 0
   gravityDirection: {x: 0, y: -1}
   linearDragCoefficient: 0
   applyLinearDrag: 0
   torque: -150
-  applyTorque: 1
+  applyTorque: 0
   angularDragCoefficient: 0
   applyAngularDrag: 0
-  windForce: 0
-  applyWind: 0
-  fluidDensity: 0
+  windMagnitude: 100
+  windDirection: {x: -10, y: 0}
+  applyWind: 1
+  buoyancyForce: {x: 0, y: 0}
+  fluidDensity: 997
   waterLevel: 0
   applyBuoyancy: 0
+  submergedVolume: 0
 --- !u!1 &1591327240
 GameObject:
   m_ObjectHideFlags: 0
@@ -1171,7 +1190,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1591327241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1186,6 +1205,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 1
   density: 250
+  area: 0
   mass: 0
   momentOfInertia: 0
   rigidBody: {fileID: 1591327242}
@@ -1207,6 +1227,9 @@ MonoBehaviour:
   mass: 1
   momentOfInertia: 0
   maxMomentOfInertia: 0
+  area: 0
+  submergedHeight: 0
+  submergedVolume: 0
   Forces: {x: 0, y: 0}
   Torques: 0
   restitution: 0.8
@@ -1449,7 +1472,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1691,6 +1714,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 1
   density: 250
+  area: 0
   mass: 0
   momentOfInertia: 0
   rigidBody: {fileID: 1894746488}
@@ -1712,6 +1736,9 @@ MonoBehaviour:
   mass: 1
   momentOfInertia: 0
   maxMomentOfInertia: 0
+  area: 0
+  submergedHeight: 0
+  submergedVolume: 0
   Forces: {x: 0, y: 0}
   Torques: 0
   restitution: 0.8

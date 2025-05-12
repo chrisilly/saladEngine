@@ -13,9 +13,13 @@ public class eduRigidBody : MonoBehaviour
     /// <summary> Defaults to down; (0, -1) </summary>
     public Vector2 gravityDirection = Vector2.down;
 
+    // Make get and set functions for the public fellas. No need to expose them to the world.
     [SerializeField] public float mass = 1f;
     [SerializeField] public float momentOfInertia = 0;
     [SerializeField] float maxMomentOfInertia = 0;
+    [SerializeField] public float area;
+    [SerializeField] public float submergedHeight = 0f;
+    [SerializeField] public float submergedVolume = 0f;
     bool hitZero;
 
     public Vector2 Forces = Vector2.zero;
@@ -51,11 +55,10 @@ public class eduRigidBody : MonoBehaviour
         float rotation = Mathf.Rad2Deg * angularVelocity * variableTimeStep;
         
         transform.rotation *= Quaternion.Euler(0,0,rotation);
-        
+
         //Vector3 rotation = new Vector3(0f, 0f, variableTimeStep * (Mathf.Rad2Deg * angularVelocity));
         //NOTE: Works "as intended" in that it adds torques and all that jazz correctly, however it drops straight to -infinity.
         //NOTE: transform.Rotate works based on EULER angles. Angular velocity and such work off of RADIANS. Conversion is necessary.
-        
         Forces = Vector2.zero;
         Torques = 0;
         frameCounter = 0;
@@ -94,4 +97,21 @@ public class eduRigidBody : MonoBehaviour
         velocity += (impulse/mass);
     }
 
+    public float findSegmentArea() 
+    {
+        float radius = GetComponentInParent<eduCircleCollider>().radius;
+        float y;
+
+        y = radius - submergedHeight;
+        float angle = Mathf.Acos(y / radius);
+        float chordLength = 2 * Mathf.Sqrt((radius * radius) - (y * y));
+        float sectorArea = area * (2 * angle / (2 * Mathf.PI));
+        submergedVolume = sectorArea - (chordLength * y) / 2;
+        return submergedVolume;
+    }
+
+    public void FindSubmergedHeight(float waterLevel)
+    {
+        submergedHeight = Math.Clamp(waterLevel - (transform.position.y - GetComponentInParent<eduCircleCollider>().radius), 0.0f, 2 * GetComponentInParent<eduCircleCollider>().radius);
+    }
 }
