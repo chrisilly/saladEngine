@@ -1165,6 +1165,7 @@ MonoBehaviour:
   applyAngularDrag: 0
   windMagnitude: 100
   windDirection: {x: -10, y: 0}
+  airDensity: 1.225
   applyWind: 1
   buoyancyForce: {x: 0, y: 0}
   fluidDensity: 997
