@@ -79,12 +79,6 @@ public class eduRigidBody : MonoBehaviour
         Forces += force;
     }
 
-    /// <summary> Use a float if you want to add speed but not change or give a direction </summary>
-    public void applyForce(float magnitude)
-    {
-        Forces += Forces.normalized * magnitude;
-    }
-
     public Vector2 GetVelocity() { return velocity; }
 
     public void applyTorque(float torque)

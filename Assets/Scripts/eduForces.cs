@@ -40,13 +40,11 @@ public class eduForces : MonoBehaviour
     {
         foreach (eduRigidBody rigidBody in rigidBodies)
         {
-            float gravityMagnitude = Math.Abs(gravity * rigidBody.mass * (applied = applyGravity ? 1:0)) * rigidBody.gravityMultiplier;
+            float gravityMagnitude = Math.Abs(gravity * rigidBody.mass) * rigidBody.gravityMultiplier;
             Vector2 gravityForce = rigidBody.gravityDirection * gravityMagnitude;
 
-            float Torques = torque * (applied = applyTorque ? 1 : 0);
-
             if(applyGravity) rigidBody.applyForce(gravityForce); // Apply gravity to each rigid body, activate and deactivate with a bool. Alternatively use Convert.ToInt32(applyGravity)
-            if(applyTorque) rigidBody.applyTorque(Torques);     // Apply torque to each rigid body
+            if(applyTorque) rigidBody.applyTorque(torque);     // Apply torque to each rigid body
             if(applyBuoyancy) rigidBody.applyForce(BuoyancyForce(rigidBody)); //Apply buoyancy to each rigid body
             if(applyWind) rigidBody.applyForce(FindWindForce());
         }
@@ -81,13 +79,13 @@ public class eduForces : MonoBehaviour
         //Find the submerged volume (i.e. area of the segment under water)
         rigidBody.findSegmentArea();
 
-        buoyancyForce.y = buoyancyMagnitude * rigidBody.submergedVolume * (applied = applyBuoyancy ? 1 : 0);
+        buoyancyForce.y = buoyancyMagnitude * rigidBody.submergedVolume;
         return buoyancyForce;
     }
 
     public Vector2 FindWindForce()
     {
-        Vector2 windForce = windDirection.normalized * windMagnitude * (applied = applyWind ? 1:0);
+        Vector2 windForce = windDirection.normalized * windMagnitude;
         Debug.Log($"Wind force: {windForce}");
         return windForce;
     }
