@@ -4,7 +4,7 @@ using UnityEngine.Assertions;
 
 public class eduDumbCollision : MonoBehaviour
 {
-    bool debug = true;
+    bool debug = false;
     eduDumbWallCollider[] walls;
     eduCircleCollider[] circles;
 
@@ -25,7 +25,7 @@ public class eduDumbCollision : MonoBehaviour
 
                 eduRigidBody circleBody = circle.GetComponent<eduRigidBody>();
 
-                // if(!MovingApart(circleBody, wall)) continue;
+                if(!MovingApart(circleBody, wall)) continue;
                 
                 SolveCollision(circleBody, wall);
             }
@@ -41,10 +41,8 @@ public class eduDumbCollision : MonoBehaviour
     {
         Vector2 newVelocity = Vector2.zero;
 
-        // if(debug) Debug.Log($"Changing velocity of {circle} to {newVelocity}.");
         if(wall.Horizontal())
         {
-            // Debug.Log($"{wall} is Horizontal? {wall.Horizontal()}. Is Vertical? {wall.Vertical()}");
             newVelocity = new Vector2(circle.GetVelocity().x, -circle.GetVelocity().y);  
             if(debug) Debug.Log($"Changing velocity of {circle} to {newVelocity}.");
         }
@@ -54,11 +52,43 @@ public class eduDumbCollision : MonoBehaviour
             if(debug) Debug.Log($"Changing velocity of {circle} to {newVelocity}.");
         }
 
+		// Vector2 testVelocity = circle.GetVelocity().magnitude * wall.Normal();
+		// Vector2 testVelocity2 = 2 * Vector2.Dot(circle.GetVelocity(), wall.Normal()) * wall.Normal();
+		// Vector2 testVelocity3 = circle.GetVelocity() + wall.Normal();
+		// Vector2 refectedVelocity = GetNewVelocity(circle, wall);
 
-        circle.SetVelocity(newVelocity);
+        circle.SetVelocity(GetNewVelocity(circle, wall));
+		// circle.applyImpulse(testVelocity);
+
+		CorrectPosition(circle, wall);
 
         Assert.IsTrue(newVelocity != Vector2.zero, "Weird collision happened!");
     }
+
+	Vector2 GetNewVelocity(eduRigidBody circle, eduDumbWallCollider wall)
+	{
+		eduCircleCollider circleCollider = circle.GetComponent<eduCircleCollider>();
+
+		float angle = (float)Math.Acos(Vector2.Dot(-circle.GetVelocity().normalized, wall.UnitVector()));
+		if(angle > 180) angle -= 180; // in case wall.UnitVector() was pointing in the "wrong" direction
+
+		float newVelocityComposite = 2 * (float)Math.Sin(angle) * (-circle.GetVelocity()).magnitude;
+
+		Vector2 newVelocity = circle.GetVelocity() + newVelocityComposite * wall.Normal() * circle.restitution; // * vector.magnitude ?
+
+		return newVelocity;
+	}
+
+	void CorrectPosition(eduRigidBody circle, eduDumbWallCollider wall)
+	{
+		eduCircleCollider circleCollider = circle.GetComponent<eduCircleCollider>();
+
+		float errorReduction = 1.0f;
+		float penetration = circleCollider.radius - Distance(circleCollider, wall);
+		penetration *= Distance(circleCollider, wall) < circleCollider.radius ? 1 : 0;
+
+		circle.transform.position +=  penetration * (Vector3)wall.Normal() * errorReduction;
+	}
 
     float Distance(eduCircleCollider circle, eduDumbWallCollider wall)
     {
@@ -68,6 +98,7 @@ public class eduDumbCollision : MonoBehaviour
         float angle = (float)Math.Acos(Vector2.Dot(wallOriginToCircle.normalized, wall.UnitVector()));
         if(angle > 180) angle -= 180; // in case wall.UnitVector() was pointing in the "wrong" direction
 
+		// Sin(x) = O / H ==> O = H * Sin(x)
         float distance = wallOriginToCircle.magnitude * (float)Math.Sin(angle);
 
         return distance;
