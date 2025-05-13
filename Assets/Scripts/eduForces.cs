@@ -20,11 +20,14 @@ public class eduForces : MonoBehaviour
     public float angularDragCoefficient = 0f;
     public bool applyAngularDrag = false; 
 
-    public float windMagnitude = 0f;
-    public Vector2 windDirection = Vector2.zero;
-    public float airDensity;
-    public bool applyWind = false;
-    
+    //public float windMagnitude = 0f;
+    //public Vector2 windDirection = Vector2.zero;
+    //public float airDensity;
+    //public bool applyWind = false;
+    //MOVED TO WINDMAP
+
+    public eduWindMap windMap; //Reference to the wind map script
+
     public Vector2 buoyancyForce = new Vector2(0,0);
     public float fluidDensity = 0f;
     public float waterLevel = 0f; //How high the water is
@@ -37,6 +40,7 @@ public class eduForces : MonoBehaviour
     void Start()
     {
         rigidBodies = FindObjectsByType<eduRigidBody>(FindObjectsSortMode.None); //FindObjectsByType<eduRigidBody>(FindObjectsSortMode.None);
+        windMap = GetComponentInParent<eduWindMap>();
     }
 
     void FixedUpdate()
@@ -51,7 +55,7 @@ public class eduForces : MonoBehaviour
             rigidBody.applyForce(gravityForce); // Apply gravity to each rigid body, activate and deactivate with a bool. Alternatively use Convert.ToInt32(applyGravity)
             rigidBody.applyTorque(Torques);     // Apply torque to each rigid body
             rigidBody.applyForce(BuoyancyForce(rigidBody)); //Apply buoyancy to each rigid body
-            rigidBody.applyForce(FindWindForce(rigidBody));
+            rigidBody.applyForce(windMap.FindWindForce(rigidBody));
         }
     }
     // Update is called once per frame
@@ -78,18 +82,18 @@ public class eduForces : MonoBehaviour
         return buoyancyForce;
     }
 
-    public Vector2 FindWindForce(eduRigidBody rigidBody)
-    {
-        Vector2 normalizedWindDirection = windDirection.normalized;
+    //public Vector2 FindWindForce(eduRigidBody rigidBody)
+    //{
+    //    Vector2 normalizedWindDirection = windDirection.normalized;
 
-        float projectedArea = rigidBody.FindProjectedArea(normalizedWindDirection);
+    //    float projectedArea = rigidBody.FindProjectedArea(normalizedWindDirection);
 
-        float windForceMagnitude = 0.5f * airDensity * Mathf.Pow(windMagnitude, 2) * projectedArea;
+    //    float windForceMagnitude = 0.5f * airDensity * Mathf.Pow(windMagnitude, 2) * projectedArea;
 
-        Vector2 windForce = normalizedWindDirection * windForceMagnitude * (applied = applyWind ? 1:0);
+    //    Vector2 windForce = normalizedWindDirection * windForceMagnitude * (applied = applyWind ? 1:0);
 
-        Debug.Log($"Wind force: {windForce} (Projected area: {projectedArea})");
+    //    Debug.Log($"Wind force: {windForce} (Projected area: {projectedArea})");
 
-        return windForce;
-    }
+    //    return windForce;
+    //}
 }
