@@ -36,8 +36,7 @@ public class eduRigidBody : MonoBehaviour
 
         if(frameCounter < skipFrames)
         {
-            Forces = Vector2.zero;
-            Torques = 0;
+            ResetKinetics();
             frameCounter++;
             return;
         }
@@ -59,8 +58,7 @@ public class eduRigidBody : MonoBehaviour
         //Vector3 rotation = new Vector3(0f, 0f, variableTimeStep * (Mathf.Rad2Deg * angularVelocity));
         //NOTE: Works "as intended" in that it adds torques and all that jazz correctly, however it drops straight to -infinity.
         //NOTE: transform.Rotate works based on EULER angles. Angular velocity and such work off of RADIANS. Conversion is necessary.
-        Forces = Vector2.zero;
-        Torques = 0;
+        ResetKinetics();
         frameCounter = 0;
     }
 
@@ -80,6 +78,17 @@ public class eduRigidBody : MonoBehaviour
     }
 
     public Vector2 GetVelocity() { return velocity; }
+    public void SetVelocity(Vector2 value) 
+    { 
+        Debug.Log($"Velocity changed from {velocity} to {value}");
+        velocity = value;
+    }
+
+    void ResetKinetics()
+    {
+        Forces = Vector2.zero;
+        Torques = 0;
+    }
 
     public void applyTorque(float torque)
     {
