@@ -20,6 +20,7 @@ public class eduForces : MonoBehaviour
 
     public float windMagnitude = 0f;
     public Vector2 windDirection = Vector2.zero;
+    public float airDensity;
     public bool applyWind = false;
     
     public Vector2 buoyancyForce = new Vector2(0,0);
@@ -46,7 +47,7 @@ public class eduForces : MonoBehaviour
             if(applyGravity) rigidBody.applyForce(gravityForce); // Apply gravity to each rigid body, activate and deactivate with a bool. Alternatively use Convert.ToInt32(applyGravity)
             if(applyTorque) rigidBody.applyTorque(torque);     // Apply torque to each rigid body
             if(applyBuoyancy) rigidBody.applyForce(BuoyancyForce(rigidBody)); //Apply buoyancy to each rigid body
-            if(applyWind) rigidBody.applyForce(FindWindForce());
+            if(applyWind) rigidBody.applyForce(FindWindForce(rigidBody));
         }
     }
 
@@ -83,10 +84,18 @@ public class eduForces : MonoBehaviour
         return buoyancyForce;
     }
 
-    public Vector2 FindWindForce()
+    public Vector2 FindWindForce(eduRigidBody rigidBody)
     {
-        Vector2 windForce = windDirection.normalized * windMagnitude;
-        Debug.Log($"Wind force: {windForce}");
+        Vector2 normalizedWindDirection = windDirection.normalized;
+
+        float projectedArea = rigidBody.FindProjectedArea(normalizedWindDirection);
+
+        float windForceMagnitude = 0.5f * airDensity * Mathf.Pow(windMagnitude, 2) * projectedArea;
+
+        Vector2 windForce = normalizedWindDirection * windForceMagnitude * (applied = applyWind ? 1:0);
+
+        Debug.Log($"Wind force: {windForce} (Projected area: {projectedArea})");
+
         return windForce;
     }
 }

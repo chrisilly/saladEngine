@@ -108,4 +108,17 @@ public class eduRigidBody : MonoBehaviour
     {
         submergedHeight = Math.Clamp(waterLevel - (transform.position.y - GetComponentInParent<eduCircleCollider>().radius), 0.0f, 2 * GetComponentInParent<eduCircleCollider>().radius);
     }
+
+    public float FindProjectedArea(Vector2 windDirection)
+    {
+        eduCircleCollider ec = GetComponentInParent<eduCircleCollider>();
+
+        float angle = Vector2.SignedAngle(Vector2.right, windDirection.normalized);
+
+        float radius = ec.radius;
+
+        float projectedArea = 2 * radius * MathF.Abs(Vector2.Dot(transform.up, windDirection.normalized));
+
+        return projectedArea;
+    }
 }
