@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   immovable: 0
-  velocity: {x: 25, y: 25}
+  velocity: {x: 10, y: 10}
   angularVelocity: 0
   maxAngularVelocity: 8
   gravityMultiplier: 1
@@ -184,7 +184,7 @@ MonoBehaviour:
   submergedVolume: 0
   Forces: {x: 0, y: 0}
   Torques: 0
-  restitution: 0.9
+  restitution: 1
   skipFrames: 0
 --- !u!96 &23309102
 TrailRenderer:
@@ -576,7 +576,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   draw: 0
   radius: 1
-  density: 250
+  density: 600
   area: 0
   mass: 0
   momentOfInertia: 0
@@ -607,7 +607,7 @@ MonoBehaviour:
   submergedVolume: 0
   Forces: {x: 0, y: 0}
   Torques: 0
-  restitution: 0.9
+  restitution: 1
   skipFrames: 0
 --- !u!96 &994351874
 TrailRenderer:
@@ -851,7 +851,7 @@ MonoBehaviour:
   submergedVolume: 0
   Forces: {x: 0, y: 0}
   Torques: 0
-  restitution: 0.9
+  restitution: 1
   skipFrames: 0
 --- !u!96 &1477971737
 TrailRenderer:
@@ -1248,7 +1248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   draw: 0
   radius: 1
-  density: 250
+  density: 300
   area: 0
   mass: 0
   momentOfInertia: 0
@@ -1279,7 +1279,7 @@ MonoBehaviour:
   submergedVolume: 0
   Forces: {x: 0, y: 0}
   Torques: 0
-  restitution: 0.9
+  restitution: 1
   skipFrames: 0
 --- !u!96 &1966075771
 TrailRenderer:
@@ -1523,7 +1523,7 @@ MonoBehaviour:
   submergedVolume: 0
   Forces: {x: 0, y: 0}
   Torques: 0
-  restitution: 0.9
+  restitution: 1
   skipFrames: 0
 --- !u!96 &1976371629
 TrailRenderer:

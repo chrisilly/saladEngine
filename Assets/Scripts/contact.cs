@@ -29,16 +29,17 @@ public class Contact
         Assert.IsTrue(CircleWall(body, other) || CircleCircle(body, other));
 
         Vector2 relativeVelocity = other.GetVelocity() - body.GetVelocity();
-        float velocityAlongNormal = Vector2.Dot(relativeVelocity, collisionNormal);
-        
-        Vector2 impulse = ((body.mass * other.mass) / (body.mass + other.mass)) * (1 + body.restitution) * relativeVelocity * collisionNormal;
+        float restitution = Mathf.Min(body.restitution, other.restitution);
+
+        // Vector2 impulse = body.mass * other.mass / (body.mass + other.mass) * (1 + restitution) * relativeVelocity * collisionNormal; // it was a dot product sign... not a multiplication sign...
+        float impulse = Vector2.Dot(body.mass * other.mass / (body.mass + other.mass) * (1 + restitution) * relativeVelocity, collisionNormal);
 
         //Apply Impulses
         body.applyImpulse(impulse * collisionNormal);
         other.applyImpulse(-impulse * collisionNormal);
 
         //Overlap Correction
-        float errorReduction = 1.0f;
+        float errorReduction = 0.5f;
         float Pn = errorReduction * (body.mass * other.mass/(body.mass + other.mass)) * penetration;
         CorrectOverlap(body, -Pn);
         CorrectOverlap(other, Pn);
@@ -48,9 +49,10 @@ public class Contact
     {
         if(body.immovable) return;
 
-        float offset = 0.05f;
+        float offset = 0f;
+        Vector3 correction = (Pn/body.mass) * collisionNormal + offset * ((Pn/body.mass) * collisionNormal).normalized;
 
-		body.transform.position += (Pn/body.mass) * collisionNormal + offset * ((Pn/body.mass) * collisionNormal).normalized;
+		body.transform.position += correction;
 		// Debug.Log($"Collision corrected with normal {collisionNormal}");
     }
 
