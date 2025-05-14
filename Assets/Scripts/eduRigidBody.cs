@@ -46,7 +46,7 @@ public class eduRigidBody : MonoBehaviour
         // Semi-implicit Euler method, see README.md
         velocity = velocity + variableTimeStep * Forces/mass;
         // We make a Vector3 out of velocity here as a quick fix because transform.position is a Vector3 by default even in a 2D project for whatever reason
-        transform.position = transform.position + variableTimeStep * new Vector3(velocity.x, velocity.y, 0);
+        transform.position = transform.position + variableTimeStep * (Vector3)velocity;
 
         //Semi-implicit Euler method, but applied to angular motion.
         angularVelocity = angularVelocity + variableTimeStep * Torques * (1 / momentOfInertia);
@@ -97,7 +97,7 @@ public class eduRigidBody : MonoBehaviour
 
     public void applyImpulse(Vector2 impulse) 
     {
-        velocity += (impulse/mass);
+        if(!immovable) velocity += (impulse/mass);
     }
 
     public float findSegmentArea() 
