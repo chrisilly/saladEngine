@@ -38,7 +38,7 @@ public class Contact
         other.applyImpulse(-impulse * collisionNormal);
 
         //Overlap Correction
-        float errorReduction = 0.8f;
+        float errorReduction = 1.0f;
         float Pn = errorReduction * (body.mass * other.mass/(body.mass + other.mass)) * penetration;
         CorrectOverlap(body, -Pn);
         CorrectOverlap(other, Pn);
@@ -48,7 +48,9 @@ public class Contact
     {
         if(body.immovable) return;
 
-		body.transform.position += (Pn/body.mass) * collisionNormal;
+        float offset = 0.05f;
+
+		body.transform.position += (Pn/body.mass) * collisionNormal + offset * ((Pn/body.mass) * collisionNormal).normalized;
 		// Debug.Log($"Collision corrected with normal {collisionNormal}");
     }
 
