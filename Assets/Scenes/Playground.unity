@@ -586,7 +586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: {x: 10, y: 0}
+  velocity: {x: 0, y: 0}
   angularVelocity: 8
   maxAngularVelocity: 8
   mass: 1
@@ -1120,6 +1120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1505339313}
   - component: {fileID: 1505339314}
+  - component: {fileID: 1505339315}
   m_Layer: 0
   m_Name: PhysicsManager
   m_TagString: Untagged
@@ -1163,15 +1164,29 @@ MonoBehaviour:
   applyTorque: 0
   angularDragCoefficient: 0
   applyAngularDrag: 0
-  windMagnitude: 100
-  windDirection: {x: -10, y: 0}
-  airDensity: 1.225
-  applyWind: 1
+  windMap: {fileID: 1505339315}
   buoyancyForce: {x: 0, y: 0}
   fluidDensity: 997
   waterLevel: 0
   applyBuoyancy: 0
   submergedVolume: 0
+--- !u!114 &1505339315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1505339311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a10fec4df8f54b24b96f4944389bb6b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noiseScale: 0.1
+  windMagnitude: 100
+  windDirection: {x: -0.70710677, y: -0.70710677}
+  airDensity: 1.293
+  applyWind: 1
 --- !u!1 &1591327240
 GameObject:
   m_ObjectHideFlags: 0
@@ -1191,7 +1206,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1591327241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1406,7 +1421,7 @@ Transform:
   m_GameObject: {fileID: 1591327240}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 44.4, y: 0, z: 0}
   m_LocalScale: {x: 1.189, y: 1.189, z: 1.189}
   m_ConstrainProportionsScale: 0
   m_Children: []
