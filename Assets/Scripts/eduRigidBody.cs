@@ -49,7 +49,7 @@ public class eduRigidBody : MonoBehaviour
         transform.position = transform.position + variableTimeStep * (Vector3)velocity;
 
         //Semi-implicit Euler method, but applied to angular motion.
-        angularVelocity = angularVelocity + variableTimeStep * Torques * (1 / momentOfInertia);
+        angularVelocity = Mathf.Clamp(angularVelocity + variableTimeStep * Torques * (1 / momentOfInertia), -maxAngularVelocity, maxAngularVelocity);
 
         float rotation = 0;
         if (this.GetComponent<eduCircleCollider>() != null) rotation = Mathf.Rad2Deg * angularVelocity * variableTimeStep;
