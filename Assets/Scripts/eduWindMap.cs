@@ -5,7 +5,7 @@ public class eduWindMap : MonoBehaviour
     public float noiseScale = 0.1f; 
     public float windMagnitude = 1f;
     public Vector2 windDirection = Vector2.zero;
-    public float airDensity;
+    public float airDensity = 1.293f;
     public bool applyWind = false;
     private float offsetX;
     private float offsetY;
@@ -25,6 +25,8 @@ public class eduWindMap : MonoBehaviour
     public Vector2 FindWindForce(eduRigidBody rigidBody)
     {
         if(!applyWind) return Vector2.zero;
+        if(rigidBody.GetComponentInParent<eduCircleCollider>() == null) return Vector2.zero;
+
         float noiseX = Mathf.PerlinNoise(rigidBody.transform.position.x * noiseScale + offsetX, rigidBody.transform.position.y * noiseScale + offsetY);
         float noiseY = Mathf.PerlinNoise(rigidBody.transform.position.x * noiseScale + offsetX + 100f, rigidBody.transform.position.y * noiseScale + offsetY + 100f);
 
@@ -39,6 +41,24 @@ public class eduWindMap : MonoBehaviour
         Vector2 windForce = normalizedWindDirection * windForceMagnitude * (applyWind ? 1 : 0);
 
         Debug.Log($"WindForce: {windForce}");
+
+        return windForce;
+    }
+
+    public Vector2 FindWindForceManual(eduRigidBody rigidBody)
+    {
+        if (!applyWind) return Vector2.zero;
+        if (rigidBody.GetComponentInParent<eduCircleCollider>() == null) return Vector2.zero;
+
+        Vector2 normalizedWindDirection = windDirection.normalized;
+
+        float projectedArea = rigidBody.FindProjectedArea(normalizedWindDirection);
+
+        float windForceMagnitude = 0.5f * airDensity * Mathf.Pow(windMagnitude, 2) * projectedArea;
+
+        Vector2 windForce = normalizedWindDirection * windForceMagnitude;
+
+        Debug.Log($"Wind force: {windForce} (Projected area: {projectedArea})");
 
         return windForce;
     }
