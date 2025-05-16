@@ -40,8 +40,8 @@ public class eduForces : MonoBehaviour
     {
         foreach (eduRigidBody rigidBody in rigidBodies)
         {
-            float gravityMagnitude = Math.Abs(gravity * rigidBody.mass);
-            Vector2 gravityForce = gravityDirection * gravityMagnitude;
+            float gravityMagnitude = Math.Abs(gravity * rigidBody.mass * rigidBody.gravityMultiplier);
+            Vector2 gravityForce = rigidBody.gravityDirection * gravityMagnitude;
 
             if(applyGravity)rigidBody.applyForce(gravityForce); 
             if(applyTorque)rigidBody.applyTorque(torque);   

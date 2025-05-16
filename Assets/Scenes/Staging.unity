@@ -170,7 +170,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  immovable: 0
   velocity: {x: 0, y: 0}
   angularVelocity: 8
   maxAngularVelocity: 8
@@ -184,7 +183,7 @@ MonoBehaviour:
   submergedVolume: 0
   Forces: {x: 0, y: 0}
   Torques: 0
-  restitution: 1
+  restitution: 0.95
   skipFrames: 0
 --- !u!96 &30886595
 TrailRenderer:
@@ -414,7 +413,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  immovable: 0
   velocity: {x: 0, y: 0}
   angularVelocity: 8
   maxAngularVelocity: 8
@@ -428,7 +426,7 @@ MonoBehaviour:
   submergedVolume: 0
   Forces: {x: 0, y: 0}
   Torques: 0
-  restitution: 1
+  restitution: 0.95
   skipFrames: 0
 --- !u!96 &160361115
 TrailRenderer:
@@ -658,7 +656,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  immovable: 0
   velocity: {x: 0, y: 0}
   angularVelocity: 8
   maxAngularVelocity: 8
@@ -672,7 +669,7 @@ MonoBehaviour:
   submergedVolume: 0
   Forces: {x: 0, y: 0}
   Torques: 0
-  restitution: 1
+  restitution: 0.95
   skipFrames: 0
 --- !u!96 &1428400351
 TrailRenderer:
@@ -902,7 +899,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  immovable: 0
   velocity: {x: 0, y: 0}
   angularVelocity: 8
   maxAngularVelocity: 8
@@ -916,7 +912,7 @@ MonoBehaviour:
   submergedVolume: 0
   Forces: {x: 0, y: 0}
   Torques: 0
-  restitution: 1
+  restitution: 0.95
   skipFrames: 0
 --- !u!96 &1442326668
 TrailRenderer:
@@ -1125,14 +1121,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  immovable: 1
   velocity: {x: 0, y: 0}
-  angularVelocity: 8
-  maxAngularVelocity: 8
+  angularVelocity: 0
+  maxAngularVelocity: 0
   gravityMultiplier: 0
   gravityDirection: {x: 0, y: 0}
-  mass: 10000000
-  momentOfInertia: 0
+  mass: 1e+12
+  momentOfInertia: 1
   maxMomentOfInertia: 0
   area: 0
   submergedHeight: 0
@@ -1171,7 +1166,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 4.3, z: 0}
   m_LocalScale: {x: 0.4382493, y: 0.4382493, z: 0.4382493}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1646272130}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1510113805
@@ -1204,14 +1200,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  immovable: 1
   velocity: {x: 0, y: 0}
-  angularVelocity: 8
-  maxAngularVelocity: 8
+  angularVelocity: 0
+  maxAngularVelocity: 0
   gravityMultiplier: 0
   gravityDirection: {x: 0, y: 0}
-  mass: 10000000
-  momentOfInertia: 0
+  mass: 1e+12
+  momentOfInertia: 1
   maxMomentOfInertia: 0
   area: 0
   submergedHeight: 0
@@ -1338,12 +1333,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1646272127}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -9.811768, z: -22.818062}
+  m_LocalScale: {x: 2.2818062, y: 2.2818062, z: 2.2818062}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1478936903}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1691363474
 GameObject:
@@ -1377,16 +1372,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravity: -9.81
-  applyGravity: 0
+  applyGravity: 1
   gravityDirection: {x: 0, y: -1}
   torque: -150
   applyTorque: 0
   windMap: {fileID: 1691363478}
-  manualWind: 1
+  manualWind: 0
   buoyancyForce: {x: 0, y: 0}
   fluidDensity: 997
   waterLevel: -2
-  applyBuoyancy: 0
+  applyBuoyancy: 1
 --- !u!4 &1691363476
 Transform:
   m_ObjectHideFlags: 0
@@ -1427,7 +1422,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noiseScale: 0.1
-  windMagnitude: 10
+  windMagnitude: 25
   windDirection: {x: -1, y: -10}
   airDensity: 1.227
   applyWind: 1
@@ -1461,14 +1456,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  immovable: 1
   velocity: {x: 0, y: 0}
-  angularVelocity: 8
-  maxAngularVelocity: 8
+  angularVelocity: 0
+  maxAngularVelocity: 0
   gravityMultiplier: 0
   gravityDirection: {x: 0, y: 0}
-  mass: 10000000
-  momentOfInertia: 0
+  mass: 1e+12
+  momentOfInertia: 1
   maxMomentOfInertia: 0
   area: 0
   submergedHeight: 0
@@ -1573,14 +1567,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  immovable: 1
   velocity: {x: 0, y: 0}
-  angularVelocity: 8
-  maxAngularVelocity: 8
+  angularVelocity: 0
+  maxAngularVelocity: 0
   gravityMultiplier: 0
   gravityDirection: {x: 0, y: 0}
-  mass: 10000000
-  momentOfInertia: 0
+  mass: 1e+12
+  momentOfInertia: 1
   maxMomentOfInertia: 0
   area: 0
   submergedHeight: 0
@@ -1640,7 +1633,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  immovable: 0
   velocity: {x: 0, y: 0}
   angularVelocity: 8
   maxAngularVelocity: 8
@@ -1654,7 +1646,7 @@ MonoBehaviour:
   submergedVolume: 0
   Forces: {x: 0, y: 0}
   Torques: 0
-  restitution: 1
+  restitution: 0.95
   skipFrames: 0
 --- !u!96 &2009252373
 TrailRenderer:
@@ -1884,7 +1876,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 038df9161830ba743aae167ba9a9d4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  immovable: 0
   velocity: {x: 0, y: 0}
   angularVelocity: 8
   maxAngularVelocity: 8
@@ -1898,7 +1889,7 @@ MonoBehaviour:
   submergedVolume: 0
   Forces: {x: 0, y: 0}
   Torques: 0
-  restitution: 1
+  restitution: 0.95
   skipFrames: 0
 --- !u!96 &2075868932
 TrailRenderer:
@@ -2081,7 +2072,6 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1646272130}
   - {fileID: 1691363476}
   - {fileID: 1442326670}
   - {fileID: 1428400353}

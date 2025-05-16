@@ -47,7 +47,7 @@ public class Contact
 
     void CorrectOverlap(eduRigidBody body, float Pn)
     {
-        if(body.immovable) return;
+        // if(body.immovable) return;
 
         float offset = 0f;
         Vector3 correction = (Pn/body.mass) * collisionNormal + offset * ((Pn/body.mass) * collisionNormal).normalized;

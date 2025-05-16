@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class eduRigidBody : MonoBehaviour 
 {
-    [SerializeField] public bool immovable = false;
+    // [SerializeField] public bool immovable = false;
 
     [SerializeField] Vector2 velocity = Vector2.zero;
     [SerializeField] float angularVelocity = 0;
@@ -32,7 +32,7 @@ public class eduRigidBody : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(immovable) return;
+        // if(immovable) return;
 
         if(frameCounter < skipFrames)
         {
@@ -50,8 +50,9 @@ public class eduRigidBody : MonoBehaviour
 
         //Semi-implicit Euler method, but applied to angular motion.
         angularVelocity = angularVelocity + variableTimeStep * Torques * (1 / momentOfInertia);
-        
-        float rotation = Mathf.Rad2Deg * angularVelocity * variableTimeStep;
+
+        float rotation = 0;
+        if (this.GetComponent<eduCircleCollider>() != null) rotation = Mathf.Rad2Deg * angularVelocity * variableTimeStep;
         
         transform.rotation *= Quaternion.Euler(0,0,rotation);
 
@@ -97,11 +98,14 @@ public class eduRigidBody : MonoBehaviour
 
     public void applyImpulse(Vector2 impulse) 
     {
-        if(!immovable) velocity += (impulse/mass);
+        // if(!immovable)
+        velocity += (impulse/mass);
     }
 
     public float findSegmentArea() 
     {
+        if (this.GetComponent<eduCircleCollider>() == null) return 0;
+
         float radius = GetComponentInParent<eduCircleCollider>().radius;
         float y;
 
@@ -115,6 +119,8 @@ public class eduRigidBody : MonoBehaviour
 
     public void FindSubmergedHeight(float waterLevel)
     {
+        if (this.GetComponent<eduCircleCollider>() == null) return;
+
         submergedHeight = Math.Clamp(waterLevel - (transform.position.y - GetComponentInParent<eduCircleCollider>().radius), 0.0f, 2 * GetComponentInParent<eduCircleCollider>().radius);
     }
 
